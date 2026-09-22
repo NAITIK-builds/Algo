@@ -1,0 +1,378 @@
+\documentclass[12pt, a4paper]{article}
+
+% --- Packages ---
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage{ifthen}
+
+% --- Custom Colors ---
+\definecolor{csjmblue}{RGB}{46, 91, 136} 
+
+% --- Line & Paragraph Spacing ---
+\setstretch{1.2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% --- Page Numbering Configuration ---
+\pagestyle{plain}
+\fancyhf{}
+\cfoot{\thepage}
+
+% Custom section title formatting
+\titleformat{\section}
+  {\normalfont\Large\bfseries\centering}{\thesection.}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+% --- PROJECT DETAILS ---
+\newcommand{\universityName}{Chhatrapati Shahu Ji Maharaj University}
+\newcommand{\projectTitle}{AlgoLenz: VisuAlgo-Inspired Interactive Data Structures, Pathfinding \& Sorting Visualization Platform}
+\newcommand{\degreeName}{Bachelors of Computer Application}
+
+\newcommand{\authorOneName}{Naitik}
+\newcommand{\authorOneRoll}{24116002322}
+\newcommand{\authorTwoName}{Kashish Gupta}
+\newcommand{\authorTwoRoll}{24116002274}
+\newcommand{\authorThreeName}{Naitik Mishra}
+\newcommand{\authorThreeRoll}{24116002324}
+\newcommand{\authorFourName}{Khushboo Rajpoot}
+\newcommand{\authorFourRoll}{24116002277}
+
+\newcommand{\supervisorName}{Dr. Amit Yadav}
+\newcommand{\supervisorTitle}{Associate professor}
+
+\newcommand{\collegeName}{PSIT College of Higher Education}
+\newcommand{\collegeAddress}{Kanpur-Agra-Delhi National Highway -- 2, Bhauti, Kanpur}
+\newcommand{\academicYear}{(2024-2025)}
+
+\begin{document}
+
+% ==========================================
+% PAGE 0: COVER / TITLE PAGE
+% ==========================================
+\thispagestyle{plain}
+\setcounter{page}{0}
+
+\begin{center}
+    \IfFileExists{CSJMU_logo.jpg}{
+        \includegraphics[width=2.4cm]{CSJMU_logo.jpg}
+    }{
+        \IfFileExists{csjmu_logo.png}{
+            \includegraphics[width=2.4cm]{csjmu_logo.png}
+        }{
+            \vspace*{0.2cm}
+            \rule{2.4cm}{2.4cm} \par \small{(CSJMU Logo)}
+        }
+    }
+    \vspace{0.4cm}
+
+    {\color{csjmblue} \huge \textbf{\universityName}} \\[0.3cm]
+    {\Large \textbf{Project Synopsis}} \\[0.2cm]
+    {\large \textbf{on}} \\[0.3cm]
+    {\Large \textbf{\projectTitle}} \\[0.5cm]
+
+    {\large Submitted in Partial Fulfillment of the Requirements for the} \\[0.15cm]
+    {\large Degree of} \\[0.3cm]
+    {\Large \textbf{\degreeName}} \\[0.4cm]
+
+    {\large \textbf{By}} \\[0.25cm]
+    {\large \textbf{\authorOneName, \authorOneRoll}} \\[0.12cm]
+    {\large \textbf{\authorTwoName, \authorTwoRoll}} \\[0.12cm]
+    {\large \textbf{\authorThreeName, \authorThreeRoll}} \\[0.12cm]
+    {\large \textbf{\authorFourName, \authorFourRoll}} \\[0.35cm]
+
+    {\large \textbf{Under the Supervision of}} \\[0.3cm]
+    {\large \textbf{\supervisorName}} \\[0.1cm]
+    {\large \textbf{\supervisorTitle}} \\[0.4cm]
+
+    \IfFileExists{psit_logo.jpg}{
+        \includegraphics[width=3.0cm]{psit_logo.jpg}
+    }{
+        \IfFileExists{psit_logo.png}{
+            \includegraphics[width=3.0cm]{psit_logo.png}
+        }{
+            \rule{3.0cm}{1.2cm} \par \small{(PSIT Logo)}
+        }
+    }
+    \vspace{0.3cm}
+
+    {\color{csjmblue} \Large \textbf{\collegeName}} \\[0.2cm]
+    {\small \textbf{\collegeAddress}} \\[0.3cm]
+    {\large \textbf{\academicYear}}
+\end{center}
+
+\newpage
+
+% ==========================================
+% PAGE 1: ABSTRACT
+% ==========================================
+\setcounter{page}{1}
+
+\begin{center}
+    {\Large \textbf{ABSTRACT}}
+\end{center}
+\vspace{0.5cm}
+
+Modeled after world-class educational platforms such as \textbf{VisuAlgo} (developed at the National University of Singapore), \textbf{AlgoLenz} is an advanced interactive web-based visualization and learning platform designed to transform complex Data Structures and Algorithms (DSA) into intuitive, step-by-step visual experiences. Computer science algorithms—ranging from graph pathfinding to array sorting—often present steep conceptual hurdles when taught solely through static textbooks or code listings.
+
+AlgoLenz bridges this gap by providing real-time, fine-grained animation controls, synchronized pseudocode execution highlighting, live variable state tracking, and interactive canvas environments. The platform supports graph traversals (BFS, DFS), shortest path algorithms (Dijkstra, A*, Bellman-Ford), sorting algorithms (Bubble, Selection, Insertion, Merge, Quick, Heap), multi-stop waypoint path planning (Traveling Salesperson Problem), and real-world geographic map routing using Leaflet.js. Built with React, TypeScript, Vite, Tailwind CSS, and HTML5 Canvas, AlgoLenz also features side-by-side algorithm benchmarking and interactive self-assessment quiz engines to empower computer science students and educators worldwide.
+
+\newpage
+
+% ==========================================
+% PAGE 2: CONTENTS
+% ==========================================
+\setcounter{page}{2}
+
+\begin{center}
+    {\Large \textbf{CONTENTS}}
+\end{center}
+\vspace{0.2cm}
+
+\begin{flushright}
+    \textbf{Page no.}
+\end{flushright}
+
+\setstretch{1.4}
+\begin{description}[leftmargin=0pt, labelsep=0pt]
+    \item[\textbf{1. Introduction}] \hfill 3
+        \begin{description}[leftmargin=1.5em]
+            \item[1.1 Objective] \hfill 3
+            \item[1.2 Scope] \hfill 3
+        \end{description}
+
+    \item[\textbf{2. System Requirement}] \hfill 4
+        \begin{description}[leftmargin=1.5em]
+            \item[2.1 Software Requirement] \hfill 4
+            \item[2.2 Hardware Requirement] \hfill 4
+        \end{description}
+
+    \item[\textbf{3. Modules}] \hfill 5
+        \begin{description}[leftmargin=1.5em]
+            \item[3.1 Modules Name] \hfill 5
+            \item[3.2 Modules Description] \hfill 5
+        \end{description}
+
+    \item[\textbf{4. Application Architecture}] \hfill 6
+
+    \item[\textbf{5. Technology Used}] \hfill 7
+
+    \item[\textbf{6. References}] \hfill 8
+\end{description}
+\setstretch{1.2}
+
+\newpage
+
+% ==========================================
+% PAGE 3: 1. INTRODUCTION
+% ==========================================
+\setcounter{page}{3}
+
+\begin{center}
+    {\Large \textbf{1. INTRODUCTION}}
+\end{center}
+\vspace{0.3cm}
+
+\textbf{1.1 Objective}
+
+Inspired by VisuAlgo, the primary objective of AlgoLenz is to deliver a comprehensive, accessible, and feature-rich interactive algorithm visualizer and educational platform. The core objectives include:
+
+\begin{itemize}[leftmargin=2em, itemsep=3pt]
+    \item \textbf{VisuAlgo-Style Synchronized Pseudocode:} Provide line-by-line code highlighting during live algorithm execution to clearly connect abstract code logic with visual graph/array states.
+    \item \textbf{Interactive Control \& Data Input:} Allow users to pause, step forward/backward, adjust speed, draw custom walls, set terrain weights, generate random inputs, and edit graph node configurations.
+    \item \textbf{Multi-Paradigm Algorithm Suite:} Cover graph traversals (BFS, DFS), weighted shortest path search (Dijkstra, A*, Bellman-Ford), and comparison/divide-and-conquer sorting (Bubble, Selection, Insertion, Merge, Quick, Heap).
+    \item \textbf{Concurrent Multi-Algorithm Comparison:} Run multiple algorithms side-by-side on identical input data to benchmark execution runtime (ms), path cost, visited nodes, and array swaps.
+    \item \textbf{Spatial \& Geographic Routing:} Solve multi-stop waypoint path optimization (Traveling Salesperson Problem) and overlay graph algorithms onto real-world Leaflet geographic maps.
+    \item \textbf{Self-Assessment \& Educational Tools:} Provide integrated e-lecture mode summaries and automated quizzes to evaluate algorithm comprehension.
+\end{itemize}
+
+\vspace{0.4cm}
+\textbf{1.2 Scope}
+
+\textbf{The scope of AlgoLenz spans full frontend engineering, algorithm engine design, dynamic canvas rendering, state tracking, and pedagogical tool creation:}
+
+\begin{itemize}[leftmargin=2em, itemsep=4pt]
+    \item \textbf{Graph \& Pathfinding Engine:} Dijkstra, A* Search, BFS, DFS, and Bellman-Ford algorithms with 2D grid and weighted edge support.
+    \item \textbf{Sorting Engine:} Bubble, Selection, Insertion, Merge, Quick, and Heap Sort with real-time bar height rendering and swap counters.
+    \item \textbf{VisuAlgo Inspector & Pseudocode Panel:} Real-time call stack tracking, variable value inspector, and active line-by-line pseudocode highlighting.
+    \item \textbf{Map & Waypoint Module:} Traveling Salesperson Problem (TSP) solver and Leaflet map geographic route visualization.
+    \item \textbf{Analytics & Quiz Engine:} Benchmark comparison cards and self-paced assessment quizzes.
+\end{itemize}
+
+\newpage
+
+% ==========================================
+% PAGE 4: 2. SYSTEM REQUIREMENTS
+% ==========================================
+\setcounter{page}{4}
+
+\begin{center}
+    {\Large \textbf{2. SYSTEM REQUIREMENTS}}
+\end{center}
+\vspace{0.3cm}
+
+\textbf{2.1 Software Requirements}
+
+\begin{itemize}[leftmargin=2em, itemsep=6pt]
+    \item \textbf{Operating System:} Windows 10/11, macOS, or Linux
+    \item \textbf{Runtime Environment:} Node.js (v18.x or higher), npm (v9.x or higher)
+    \item \textbf{Frontend Libraries \& Framework:} React 18, React-DOM, TypeScript 5.3
+    \item \textbf{Build Tooling \& Bundler:} Vite 5, PostCSS, Autoprefixer
+    \item \textbf{Styling \& UI System:} Tailwind CSS 3.4, Lucide React (Icons)
+    \item \textbf{Geospatial & Mapping Libraries:} Leaflet 1.9, React-Leaflet 4.2
+    \item \textbf{Supported Web Browsers:} Google Chrome, Mozilla Firefox, Microsoft Edge, Safari (HTML5 Canvas & ES6 compliant)
+\end{itemize}
+
+\vspace{0.4cm}
+\textbf{2.2 Hardware Resource Requirements}
+
+\begin{itemize}[leftmargin=2em, itemsep=6pt]
+    \item \textbf{Processor:} Intel Core i3 / i5 or AMD Ryzen 3 / 5 equivalent (2.0 GHz Dual-Core minimum)
+    \item \textbf{RAM:} Minimum 4 GB (8 GB recommended for concurrent multi-canvas side-by-side rendering)
+    \item \textbf{Storage:} 500 MB available disk space for Node modules and build assets
+    \item \textbf{Display Resolution:} Minimum 1366x768 (1080p Full HD recommended)
+\end{itemize}
+
+\newpage
+
+% ==========================================
+% PAGE 5: 3. MODULES
+% ==========================================
+\setcounter{page}{5}
+
+\begin{center}
+    {\Large \textbf{3. MODULES}}
+\end{center}
+\vspace{0.3cm}
+
+\textbf{3.1 Modules Name}
+
+\begin{enumerate}[leftmargin=2em, itemsep=4pt]
+    \item VisuAlgo-Style Interactive Grid \& Graph Visualization Engine
+    \item Sorting Algorithm \& Array Animation Module
+    \item Synchronized Pseudocode \& State Inspector Module
+    \item Side-by-Side Multi-Algorithm Comparison \& Benchmarking Module
+    \item Multi-Stop Waypoint \& TSP Optimization Engine
+    \item Real-World Geographic City Map Routing Engine (Leaflet)
+    \item Interactive E-Lecture & Self-Assessment Quiz Module
+\end{enumerate}
+
+\vspace{0.4cm}
+\textbf{3.2 Modules Description}
+
+\begin{itemize}[leftmargin=2em, itemsep=8pt]
+    \item \textbf{Interactive Grid \& Graph Visualization Engine:} Renders a 2D grid canvas supporting start/target node positioning, dynamic wall obstacle drawing, terrain weight painting, and step-by-step animation of search frontiers and shortest paths.
+    \item \textbf{Sorting Algorithm & Array Animation Module:} Displays array sorting algorithms with dynamic bar charts, highlighting active comparisons, pivot selections, array element swaps, and sorted sub-arrays in real time.
+    \item \textbf{Synchronized Pseudocode & State Inspector Module:} Displays pseudocode for the active algorithm, dynamically highlighting the currently executing line alongside real-time variable values, queue/stack contents, and step explanations (VisuAlgo standard).
+    \item \textbf{Side-by-Side Multi-Algorithm Comparison Module:} Concurrently runs two algorithms on identical input setups to benchmark runtime speed (ms), visited node count, path length, array swaps, and theoretical time/space complexity.
+    \item \textbf{Multi-Stop Waypoint & TSP Engine:} Computes the optimal visiting path across multiple target waypoints using dynamic programming and nearest-neighbor heuristics for the Traveling Salesperson Problem.
+    \item \textbf{Real-World City Map Routing Engine:} Overlays graph algorithms on interactive Leaflet geographic maps to demonstrate practical navigation and road-network routing.
+    \item \textbf{E-Lecture & Self-Assessment Quiz Module:} Provides structured educational summaries, theoretical complexity breakdowns, and interactive quiz questions to test user understanding.
+\end{itemize}
+
+\newpage
+
+% ==========================================
+% PAGE 6: 4. APPLICATION ARCHITECTURE
+% ==========================================
+\setcounter{page}{6}
+
+\begin{center}
+    {\Large \textbf{4. APPLICATION ARCHITECTURE}}
+\end{center}
+\vspace{0.4cm}
+
+\begin{enumerate}[leftmargin=2em, itemsep=10pt]
+    \item \textbf{User Interface & Control Panel Layer:} Built using React functional components, Lucide icons, and Tailwind CSS. Provides top navigation, mode switcher, playback control bar (play/pause, step, speed slider, reset), and input data generators.
+    
+    \item \textbf{State Management & Context Pipeline:} Managed via centralized \texttt{VisualizerContext}. Tracks global application state including grid structure, obstacle configurations, selected algorithms, speed factors, step animation queues, and performance metrics.
+    
+    \item \textbf{Algorithmic Engine & Pseudocode Synchronizer:} Modular TypeScript engine containing pathfinding (\texttt{dijkstra.ts}, \texttt{aStar.ts}, \texttt{bfs.ts}, \texttt{dfs.ts}, \texttt{bellmanFord.ts}) and sorting (\texttt{sorting.ts}) routines. Generates step snapshots bound to specific pseudocode line index references.
+    
+    \item \textbf{Dual Visualization & Graphics Engine:} High-frequency HTML5 Canvas rendering for 2D grids and sorting bar charts, coupled with Leaflet/SVG vector layers for real-world geographic map graphs.
+    
+    \item \textbf{Analytics, Benchmarking & Quiz Engine:} Measures execution time (ms), total path distance, visited nodes, array operations, asymptotic complexity metrics ($\mathcal{O}(V+E)$, $\mathcal{O}(n \log n)$), and processes interactive quiz assessments.
+\end{enumerate}
+
+\newpage
+
+% ==========================================
+% PAGE 7: 5. TECHNOLOGY USED
+% ==========================================
+\setcounter{page}{7}
+
+\begin{center}
+    {\Large \textbf{5. TECHNOLOGY USED}}
+\end{center}
+\vspace{0.3cm}
+
+\textbf{5.1 Frontend Technologies:}
+\begin{itemize}[leftmargin=2em, itemsep=4pt]
+    \item \textbf{React 18:} Functional UI library utilizing hooks for reactive layout and component composition.
+    \item \textbf{TypeScript 5.3:} Static type checking ensuring reliable algorithm implementation and step state definitions.
+    \item \textbf{HTML5 Canvas API \& SVG:} High-performance graphic rendering for grid animations and vector overlays.
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{5.2 Styling \& Design System:}
+\begin{itemize}[leftmargin=2em, itemsep=4pt]
+    \item \textbf{Tailwind CSS 3.4:} Utility-first CSS framework enabling modern responsive design and dark/beige themes.
+    \item \textbf{Lucide React:} Crisp icon set for playback controls, status badges, and navigation items.
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{5.3 Mapping \& Geospatial Libraries:}
+\begin{itemize}[leftmargin=2em, itemsep=4pt]
+    \item \textbf{Leaflet 1.9 \& React-Leaflet:} Open-source JavaScript mapping library for real-world geographic node routing.
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{5.4 Build System \& Tooling:}
+\begin{itemize}[leftmargin=2em, itemsep=4pt]
+    \item \textbf{Vite 5:} Lightning-fast frontend build tool with Hot Module Replacement (HMR) and optimized rollup production bundles.
+    \item \textbf{Node.js \& npm:} Package management and execution environment.
+\end{itemize}
+
+\newpage
+
+% ==========================================
+% PAGE 8: 6. REFERENCES
+% ==========================================
+\setcounter{page}{8}
+
+\begin{center}
+    {\Large \textbf{6. REFERENCES}}
+\end{center}
+\vspace{0.3cm}
+
+\begin{enumerate}[leftmargin=2em, itemsep=8pt]
+    \item \textbf{VisuAlgo Platform & Conceptual Foundation:} - \\
+    Halim, S., \& Halim, F. (2013). \textit{Competitive Programming 3: The New Lower Bound of Programming Contests} (VisuAlgo Authors, National University of Singapore). \\
+    \url{https://visualgo.net/}
+
+    \item \textbf{Standard Algorithm & Data Structure Literature (CLRS):} - \\
+    Cormen, T. H., Leiserson, C. E., Rivest, R. L., \& Stein, C. (2009). \textit{Introduction to Algorithms} (3rd ed.). MIT Press.
+
+    \item \textbf{Pathfinding & Graph Theory Papers:} -
+    \begin{description}[leftmargin=1.5em, itemsep=3pt]
+        \item[3.1.] \textbf{Dijkstra's Algorithm:} Dijkstra, E. W. (1959). A note on two problems in connexion with graphs. \textit{Numerische Mathematik}, 1(1), 269-271.
+        \item[3.2.] \textbf{A* Search Heuristic:} Hart, P. E., Nilsson, N. J., \& Raphael, B. (1968). A Formal Basis for the Heuristic Determination of Minimum Cost Paths. \textit{IEEE Transactions on Systems Science and Cybernetics}, 4(2), 100-107.
+    \end{description}
+
+    \item \textbf{Framework & Library Documentation:} -
+    \begin{description}[leftmargin=1.5em, itemsep=3pt]
+        \item[4.1.] \textbf{React.js Documentation:} \url{https://react.dev/}
+        \item[4.2.] \textbf{TypeScript Documentation:} \url{https://www.typescriptlang.org/}
+        \item[4.3.] \textbf{Leaflet Interactive Maps API:} \url{https://leafletjs.com/}
+        \item[4.4.] \textbf{Vite Build Tooling:} \url{https://vitejs.dev/}
+    \end{description}
+\end{enumerate}
+
+\end{document}

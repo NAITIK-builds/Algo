@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Synopsis Preview - AlgoLenz (VisuAlgo Inspired)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+    
+    @page {
+      size: A4;
+      margin: 0;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #e5e7eb;
+      font-family: "Times New Roman", Times, serif;
+      color: #000;
+      line-height: 1.5;
+    }
+
+    .page-container {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm 20mm 20mm 20mm;
+      margin: 20px auto;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      box-sizing: border-box;
+      position: relative;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .page-content {
+      flex: 1;
+    }
+
+    .page-footer {
+      text-align: center;
+      font-size: 11pt;
+      margin-top: 20px;
+    }
+
+    /* Heading Styling */
+    .title-blue {
+      color: #2E5B88;
+      font-weight: bold;
+    }
+
+    .center-text {
+      text-align: center;
+    }
+
+    h1.sec-title {
+      font-size: 16pt;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+    }
+
+    h2.subsec-title {
+      font-size: 13pt;
+      font-weight: bold;
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 12pt;
+      text-align: justify;
+      margin-bottom: 12px;
+    }
+
+    ul, ol {
+      margin-top: 5px;
+      margin-bottom: 15px;
+      padding-left: 30px;
+    }
+
+    li {
+      font-size: 12pt;
+      margin-bottom: 8px;
+    }
+
+    /* Print settings */
+    @media print {
+      body {
+        background: none;
+      }
+      .page-container {
+        margin: 0;
+        box-shadow: none;
+        width: 210mm;
+        height: 297mm;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 0: COVER PAGE -->
+  <div class="page-container">
+    <div class="page-content center-text">
+      <div style="margin-top: 10px;">
+        <img src="CSJMU_logo.jpg" alt="CSJMU Logo" style="height: 90px; width: auto; object-fit: contain;">
+      </div>
+      
+      <h1 class="title-blue" style="font-size: 20pt; margin: 15px 0 5px 0;">Chhatrapati Shahu Ji Maharaj University</h1>
+      <h2 style="font-size: 16pt; font-weight: normal; margin: 5px 0;">Project Synopsis</h2>
+      <p class="center-text" style="font-size: 14pt; margin: 5px 0;">on</p>
+      <h2 style="font-size: 16pt; font-weight: bold; margin: 10px 0 25px 0;">AlgoLenz: VisuAlgo-Inspired Interactive Data Structures, Pathfinding & Sorting Visualization Platform</h2>
+
+      <p class="center-text" style="font-size: 13pt; margin: 5px 0;">Submitted in Partial Fulfillment of the Requirements for the</p>
+      <p class="center-text" style="font-size: 13pt; margin: 5px 0;">Degree of</p>
+      <h2 style="font-size: 16pt; font-weight: bold; margin: 10px 0 25px 0;">Bachelors of Computer Application</h2>
+
+      <p class="center-text" style="font-size: 13pt; margin: 5px 0; font-weight: bold;">By</p>
+      <p class="center-text" style="font-size: 14pt; font-weight: bold; margin: 3px 0;">Naitik, 24116002322</p>
+      <p class="center-text" style="font-size: 14pt; font-weight: bold; margin: 3px 0;">Kashish Gupta, 24116002274</p>
+      <p class="center-text" style="font-size: 14pt; font-weight: bold; margin: 3px 0;">Naitik Mishra, 24116002324</p>
+      <p class="center-text" style="font-size: 14pt; font-weight: bold; margin: 3px 0 20px 0;">Khushboo Rajpoot, 24116002277</p>
+
+      <p class="center-text" style="font-size: 13pt; margin: 5px 0;">Under the Supervision of</p>
+      <p class="center-text" style="font-size: 15pt; font-weight: bold; margin: 3px 0;">Dr. Amit Yadav</p>
+      <p class="center-text" style="font-size: 12pt; font-style: italic; margin: 0 0 25px 0;">Associate professor</p>
+
+      <div style="margin-bottom: 10px;">
+        <img src="psit_logo.jpg" alt="PSIT Logo" style="height: 50px; width: auto; object-fit: contain;">
+      </div>
+
+      <h2 class="title-blue" style="font-size: 18pt; margin: 5px 0;">PSIT College of Higher Education</h2>
+      <p class="center-text" style="font-size: 11pt; font-weight: bold; margin: 3px 0;">Kanpur-Agra-Delhi National Highway – 2, Bhauti, Kanpur</p>
+      <p class="center-text" style="font-size: 13pt; font-weight: bold; margin: 15px 0 0 0;">(2024-2025)</p>
+    </div>
+    <div class="page-footer">0</div>
+  </div>
+
+  <!-- PAGE 1: ABSTRACT -->
+  <div class="page-container">
+    <div class="page-content">
+      <h1 class="sec-title">ABSTRACT</h1>
+      <p style="margin-top: 30px;">
+        Modeled after world-class educational platforms such as <strong>VisuAlgo</strong> (developed at the National University of Singapore), <strong>AlgoLenz</strong> is an advanced interactive web-based visualization and learning platform designed to transform complex Data Structures and Algorithms (DSA) into intuitive, step-by-step visual experiences. Computer science algorithms—ranging from graph pathfinding to array sorting—often present steep conceptual hurdles when taught solely through static textbooks or code listings.
+      </p>
+      <p>
+        AlgoLenz bridges this gap by providing real-time, fine-grained animation controls, synchronized pseudocode execution highlighting, live variable state tracking, and interactive canvas environments. The platform supports graph traversals (BFS, DFS), shortest path algorithms (Dijkstra, A*, Bellman-Ford), sorting algorithms (Bubble, Selection, Insertion, Merge, Quick, Heap), multi-stop waypoint path planning (Traveling Salesperson Problem), and real-world geographic map routing using Leaflet.js. Built with React, TypeScript, Vite, Tailwind CSS, and HTML5 Canvas, AlgoLenz also features side-by-side algorithm benchmarking and interactive self-assessment quiz engines to empower computer science students and educators worldwide.
+      </p>
+    </div>
+    <div class="page-footer">1</div>
+  </div>
+
+  <!-- PAGE 2: CONTENTS -->
+  <div class="page-container">
+    <div class="page-content">
+      <h1 class="sec-title">CONTENTS</h1>
+      <div style="text-align: right; font-weight: bold; margin-bottom: 15px;">Page no.</div>
+
+      <div style="line-height: 2.2; font-size: 13pt;">
+        <div style="display: flex; justify-content: space-between;"><strong>1. Introduction</strong> <span>3</span></div>
+        <div style="display: flex; justify-content: space-between; padding-left: 30px;"><span>1.1 Objective</span> <span>3</span></div>
+        <div style="display: flex; justify-content: space-between; padding-left: 30px;"><span>1.2 Scope</span> <span>3</span></div>
+
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;"><strong>2. System Requirement</strong> <span>4</span></div>
+        <div style="display: flex; justify-content: space-between; padding-left: 30px;"><span>2.1 Software Requirement</span> <span>4</span></div>
+        <div style="display: flex; justify-content: space-between; padding-left: 30px;"><span>2.2 Hardware Requirement</span> <span>4</span></div>
+
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;"><strong>3. Modules</strong> <span>5</span></div>
+        <div style="display: flex; justify-content: space-between; padding-left: 30px;"><span>3.1 Modules Name</span> <span>5</span></div>
+        <div style="display: flex; justify-content: space-between; padding-left: 30px;"><span>3.2 Modules Description</span> <span>5</span></div>
+
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;"><strong>4. Application Architecture</strong> <span>6</span></div>
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;"><strong>5. Technology Used</strong> <span>7</span></div>
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;"><strong>6. References</strong> <span>8</span></div>
+      </div>
+    </div>
+    <div class="page-footer">2</div>
+  </div>
+
+  <!-- PAGE 3: INTRODUCTION -->
+  <div class="page-container">
+    <div class="page-content">
+      <h1 class="sec-title">1. INTRODUCTION</h1>
+      
+      <h2 class="subsec-title">1.1 Objective</h2>
+      <p>Inspired by VisuAlgo, the primary objective of AlgoLenz is to deliver a comprehensive, accessible, and feature-rich interactive algorithm visualizer and educational platform. The core objectives include:</p>
+      <ul>
+        <li><strong>VisuAlgo-Style Synchronized Pseudocode:</strong> Provide line-by-line code highlighting during live algorithm execution to clearly connect abstract code logic with visual graph/array states.</li>
+        <li><strong>Interactive Control & Data Input:</strong> Allow users to pause, step forward/backward, adjust speed, draw custom walls, set terrain weights, generate random inputs, and edit graph node configurations.</li>
+        <li><strong>Multi-Paradigm Algorithm Suite:</strong> Cover graph traversals (BFS, DFS), weighted shortest path search (Dijkstra, A*, Bellman-Ford), and comparison/divide-and-conquer sorting (Bubble, Selection, Insertion, Merge, Quick, Heap).</li>
+        <li><strong>Concurrent Multi-Algorithm Comparison:</strong> Run multiple algorithms side-by-side on identical input data to benchmark execution runtime (ms), path cost, visited nodes, and array swaps.</li>
+        <li><strong>Spatial & Geographic Routing:</strong> Solve multi-stop waypoint path optimization (Traveling Salesperson Problem) and overlay graph algorithms onto real-world Leaflet geographic maps.</li>
+        <li><strong>Self-Assessment & Educational Tools:</strong> Provide integrated e-lecture mode summaries and automated quizzes to evaluate algorithm comprehension.</li>
+      </ul>
+
+      <h2 class="subsec-title" style="margin-top: 25px;">1.2 Scope</h2>
+      <p><strong>The scope of AlgoLenz spans full frontend engineering, algorithm engine design, dynamic canvas rendering, state tracking, and pedagogical tool creation:</strong></p>
+      <ul>
+        <li><strong>Graph & Pathfinding Engine:</strong> Dijkstra, A* Search, BFS, DFS, and Bellman-Ford algorithms with 2D grid and weighted edge support.</li>
+        <li><strong>Sorting Engine:</strong> Bubble, Selection, Insertion, Merge, Quick, and Heap Sort with real-time bar height rendering and swap counters.</li>
+        <li><strong>VisuAlgo Inspector & Pseudocode Panel:</strong> Real-time call stack tracking, variable value inspector, and active line-by-line pseudocode highlighting.</li>
+        <li><strong>Map & Waypoint Module:</strong> Traveling Salesperson Problem (TSP) solver and Leaflet map geographic route visualization.</li>
+        <li><strong>Analytics & Quiz Engine:</strong> Benchmark comparison cards and self-paced assessment quizzes.</li>
+      </ul>
+    </div>
+    <div class="page-footer">3</div>
+  </div>
+
+  <!-- PAGE 4: SYSTEM REQUIREMENTS -->
+  <div class="page-container">
+    <div class="page-content">
+      <h1 class="sec-title">2. SYSTEM REQUIREMENTS</h1>
+
+      <h2 class="subsec-title">2.1 Software Requirements</h2>
+      <ul>
+        <li><strong>Operating System:</strong> Windows 10/11, macOS, or Linux</li>
+        <li><strong>Runtime Environment:</strong> Node.js (v18.x or higher), npm (v9.x or higher)</li>
+        <li><strong>Frontend Framework & Language:</strong> React 18, React-DOM, TypeScript 5.3</li>
+        <li><strong>Build Tooling & Bundler:</strong> Vite 5, PostCSS, Autoprefixer</li>
+        <li><strong>Styling & UI System:</strong> Tailwind CSS 3.4, Lucide React (Icons)</li>
+        <li><strong>Geospatial & Mapping Libraries:</strong> Leaflet 1.9, React-Leaflet 4.2</li>
+        <li><strong>Supported Web Browsers:</strong> Google Chrome, Mozilla Firefox, Microsoft Edge, Safari (HTML5 Canvas & ES6 compliant)</li>
+      </ul>
+
+      <h2 class="subsec-title" style="margin-top: 25px;">2.2 Hardware Resource Requirements</h2>
+      <ul>
+        <li><strong>Processor:</strong> Intel Core i3 / i5 or AMD Ryzen 3 / 5 equivalent (2.0 GHz Dual-Core minimum)</li>
+        <li><strong>RAM:</strong> Minimum 4 GB (8 GB recommended for concurrent multi-canvas side-by-side rendering)</li>
+        <li><strong>Storage:</strong> 500 MB available disk space for Node modules and build assets</li>
+        <li><strong>Display Resolution:</strong> Minimum 1366x768 (1080p Full HD recommended)</li>
+      </ul>
+    </div>
+    <div class="page-footer">4</div>
+  </div>
+
+  <!-- PAGE 5: MODULES -->
+  <div class="page-container">
+    <div class="page-content">
+      <h1 class="sec-title">3. MODULES</h1>
+
+      <h2 class="subsec-title">3.1 Modules Name</h2>
+      <ol>
+        <li>VisuAlgo-Style Interactive Grid & Graph Visualization Engine</li>
+        <li>Sorting Algorithm & Array Animation Module</li>
+        <li>Synchronized Pseudocode & State Inspector Module</li>
+        <li>Side-by-Side Multi-Algorithm Comparison & Benchmarking Module</li>
+        <li>Multi-Stop Waypoint & TSP Optimization Engine</li>
+        <li>Real-World Geographic City Map Routing Engine (Leaflet)</li>
+        <li>Interactive E-Lecture & Self-Assessment Quiz Module</li>
+      </ol>
+
+      <h2 class="subsec-title" style="margin-top: 25px;">3.2 Modules Description</h2>
+      <ul>
+        <li><strong>Interactive Grid & Graph Visualization Engine:</strong> Renders a 2D grid canvas supporting start/target node positioning, dynamic wall obstacle drawing, terrain weight painting, and step-by-step animation of search frontiers and shortest paths.</li>
+        <li><strong>Sorting Algorithm & Array Animation Module:</strong> Displays array sorting algorithms with dynamic bar charts, highlighting active comparisons, pivot selections, array element swaps, and sorted sub-arrays in real time.</li>
+        <li><strong>Synchronized Pseudocode & State Inspector Module:</strong> Displays pseudocode for the active algorithm, dynamically highlighting the currently executing line alongside real-time variable values, queue/stack contents, and step explanations (VisuAlgo standard).</li>
+        <li><strong>Side-by-Side Multi-Algorithm Comparison Module:</strong> Concurrently runs two algorithms on identical input setups to benchmark runtime speed (ms), visited node count, path length, array swaps, and theoretical time/space complexity.</li>
+        <li><strong>Multi-Stop Waypoint & TSP Engine:</strong> Computes the optimal visiting path across multiple target waypoints using dynamic programming and nearest-neighbor heuristics for the Traveling Salesperson Problem.</li>
+      </ul>
+    </div>
+    <div class="page-footer">5</div>
+  </div>
+
+  <!-- PAGE 6: APPLICATION ARCHITECTURE -->
+  <div class="page-container">
+    <div class="page-content">
+      <h1 class="sec-title">4. APPLICATION ARCHITECTURE</h1>
+      <ol style="line-height: 1.6;">
+        <li style="margin-bottom: 12px;">
+          <strong>User Interface & Control Panel Layer:</strong> Built using React functional components, Lucide icons, and Tailwind CSS. Provides top navigation, mode switcher, playback control bar (play/pause, step, speed slider, reset), and input data generators.
+        </li>
+        <li style="margin-bottom: 12px;">
+          <strong>State Management & Context Pipeline:</strong> Managed via centralized <code>VisualizerContext</code>. Tracks global application state including grid structure, obstacle configurations, selected algorithms, speed factors, step animation queues, and performance metrics.
+        </li>
+        <li style="margin-bottom: 12px;">
+          <strong>Algorithmic Engine & Pseudocode Synchronizer:</strong> Modular TypeScript engine containing pathfinding (<code>dijkstra.ts</code>, <code>aStar.ts</code>, <code>bfs.ts</code>, <code>dfs.ts</code>, <code>bellmanFord.ts</code>) and sorting (<code>sorting.ts</code>). Generates step snapshots bound to specific pseudocode line index references.
+        </li>
+        <li style="margin-bottom: 12px;">
+          <strong>Dual Visualization & Graphics Engine:</strong> High-frequency HTML5 Canvas rendering for 2D grids and sorting bar charts, coupled with Leaflet/SVG vector layers for real-world geographic map graphs.
+        </li>
+        <li style="margin-bottom: 12px;">
+          <strong>Analytics, Benchmarking & Quiz Engine:</strong> Measures execution time (ms), total path distance, visited nodes, array operations, asymptotic complexity metrics ($O(V+E)$, $O(n \log n)$), and processes interactive quiz assessments.
+        </li>
+      </ol>
+    </div>
+    <div class="page-footer">6</div>
+  </div>
+
+  <!-- PAGE 7: TECHNOLOGY USED -->
+  <div class="page-container">
+    <div class="page-content">
+      <h1 class="sec-title">5. TECHNOLOGY USED</h1>
+
+      <h2 class="subsec-title">5.1 Frontend Technologies:</h2>
+      <ul>
+        <li><strong>React 18:</strong> Functional UI library utilizing hooks for reactive layout and component composition.</li>
+        <li><strong>TypeScript 5.3:</strong> Static type checking ensuring reliable algorithm implementation and step state definitions.</li>
+        <li><strong>HTML5 Canvas API & SVG:</strong> High-performance graphic rendering for grid animations and vector overlays.</li>
+      </ul>
+
+      <h2 class="subsec-title">5.2 Styling & Design System:</h2>
+      <ul>
+        <li><strong>Tailwind CSS 3.4:</strong> Utility-first CSS framework enabling modern responsive design and dark/beige themes.</li>
+        <li><strong>Lucide React:</strong> Crisp icon set for playback controls, status badges, and navigation items.</li>
+      </ul>
+
+      <h2 class="subsec-title">5.3 Mapping & Geospatial Libraries:</h2>
+      <ul>
+        <li><strong>Leaflet 1.9 & React-Leaflet:</strong> Open-source JavaScript mapping library for real-world geographic node routing.</li>
+      </ul>
+
+      <h2 class="subsec-title">5.4 Build System & Tooling:</h2>
+      <ul>
+        <li><strong>Vite 5:</strong> Lightning-fast frontend build tool with Hot Module Replacement (HMR) and optimized rollup production bundles.</li>
+        <li><strong>Node.js & npm:</strong> Package management and execution environment.</li>
+      </ul>
+    </div>
+    <div class="page-footer">7</div>
+  </div>
+
+  <!-- PAGE 8: REFERENCES -->
+  <div class="page-container">
+    <div class="page-content">
+      <h1 class="sec-title">6. REFERENCES</h1>
+
+      <ol style="line-height: 1.6;">
+        <li style="margin-bottom: 15px;">
+          <strong>VisuAlgo Platform & Conceptual Foundation:</strong> - <br>
+          Halim, S., & Halim, F. (2013). <em>Competitive Programming 3: The New Lower Bound of Programming Contests</em> (VisuAlgo Authors, National University of Singapore). <br>
+          <a href="https://visualgo.net/">https://visualgo.net/</a>
+        </li>
+        <li style="margin-bottom: 15px;">
+          <strong>Standard Algorithm & Data Structure Literature (CLRS):</strong> - <br>
+          Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). <em>Introduction to Algorithms</em> (3rd ed.). MIT Press.
+        </li>
+        <li style="margin-bottom: 15px;">
+          <strong>Pathfinding & Graph Theory Papers:</strong> -
+          <div style="padding-left: 20px; margin-top: 5px;">
+            <div><strong>3.1. Dijkstra's Algorithm:</strong> Dijkstra, E. W. (1959). A note on two problems in connexion with graphs. <em>Numerische Mathematik</em>, 1(1), 269-271.</div>
+            <div style="margin-top: 5px;"><strong>3.2. A* Search Heuristic:</strong> Hart, P. E., Nilsson, N. J., & Raphael, B. (1968). A Formal Basis for the Heuristic Determination of Minimum Cost Paths. <em>IEEE Transactions on Systems Science and Cybernetics</em>, 4(2), 100-107.</div>
+          </div>
+        </li>
+        <li style="margin-bottom: 15px;">
+          <strong>Framework & Library Documentation:</strong> -
+          <div style="padding-left: 20px; margin-top: 5px;">
+            <div><strong>4.1. React.js Documentation:</strong> <a href="https://react.dev/">https://react.dev/</a></div>
+            <div style="margin-top: 5px;"><strong>4.2. TypeScript Documentation:</strong> <a href="https://www.typescriptlang.org/">https://www.typescriptlang.org/</a></div>
+            <div style="margin-top: 5px;"><strong>4.3. Leaflet Interactive Maps API:</strong> <a href="https://leafletjs.com/">https://leafletjs.com/</a></div>
+            <div style="margin-top: 5px;"><strong>4.4. Vite Build Tooling:</strong> <a href="https://vitejs.dev/">https://vitejs.dev/</a></div>
+          </div>
+        </li>
+      </ol>
+    </div>
+    <div class="page-footer">8</div>
+  </div>
+
+</body>
+</html>
