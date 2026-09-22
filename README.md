@@ -1,216 +1,206 @@
-# 🌟 AlgoLenz — Interactive Algorithm & Data Structure Visualizer
-
 <div align="center">
 
-![License](https://img.shields.io/badge/License-MIT-blue.svg)
-![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.3-3178C6?logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-5.0-646CFF?logo=vite&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwind-css&logoColor=white)
-![Leaflet](https://img.shields.io/badge/Leaflet-1.9-199900?logo=leaflet&logoColor=white)
+# 🌐 AlgoLenz
 
-**An interactive, VisuAlgo-inspired learning platform for Pathfinding, Sorting, and Geographic Route Optimization.**
+### *VisuAlgo-Inspired Interactive Data Structures, Pathfinding & Sorting Visualization Platform*
 
-[Explore Features](#-core-modules) • [Getting Started](#-getting-started) • [Algorithms & Complexities](#-algorithms--complexities) • [Team & Credits](#-project-team--credits)
+[![React](https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.1-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Leaflet](https://img.shields.io/badge/Leaflet-1.9-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
+
+<p align="center">
+  <b>Transforming abstract computational complexity into intuitive, frame-by-frame visual experiences.</b>
+  <br />
+  Explore pathfinding algorithms, geographic route planning, multi-stop TSP delivery heuristics, and sorting audio-visualizers with live pseudocode and telemetry.
+</p>
+
+[Explore Modes](#-application-modes) •
+[Algorithm Catalog](#-algorithm-catalog) •
+[Getting Started](#-getting-started) •
+[Architecture](#-system-architecture) •
+[Team](#-team--contributors)
+
+---
 
 </div>
 
----
-
 ## 📖 Overview
 
-**AlgoLenz** is an advanced interactive educational platform designed to transform complex Data Structures and Algorithms (DSA) into intuitive, step-by-step visual experiences. 
+Inspired by world-class educational platforms such as **VisuAlgo** (National University of Singapore), **AlgoLenz** bridges the pedagogical gap in computer science education. Rather than relying on static textbook graphs and dry pseudocode, AlgoLenz provides **real-time step inspection**, **audio-visual state synthesis**, **side-by-side benchmark battles**, and **real-world geographic map routing**.
 
-Computer science algorithms—ranging from graph search and spatial path planning to array sorting—often present steep conceptual hurdles when taught strictly through static diagrams and code listings. **AlgoLenz** bridges this gap by providing real-time canvas animations, synchronized line-by-line pseudocode execution, live variable tracking, concurrent side-by-side benchmarking, and real-world geographic map routing.
-
----
-
-## ✨ Core Modules
-
-### 1. 🗺️ Interactive Grid & Graph Visualization Engine
-- **Dynamic 2D Matrix Grid**: Draw custom walls, place weight-cost terrains, and position custom Start and Target nodes.
-- **Frontier Expansion**: Watch step-by-step frontier exploration (visited nodes, active queue/stack, and final optimal path reconstruction).
-- **Maze Generators**: Built-in recursive division and random obstacle generation patterns.
-
-### 2. 📊 Sorting Algorithm & Array Animation Module
-- **Real-Time Array Visualizer**: Dynamic bar charts displaying element values, active comparisons, pivot points, and element swaps.
-- **Audio Feedback (SoundFX)**: Web Audio API synthesis generating real-time frequencies proportional to bar values during comparisons and swaps.
-- **Speed & Size Controls**: Dynamically adjust array length and playback speed from 0.25x to 4x.
-
-### 3. 🔍 VisuAlgo-Style Synchronized Pseudocode Inspector
-- **Line-by-Line Code Highlighting**: Synchronized pseudocode panel showing the exact line of code currently executing.
-- **State Inspector**: Live tracking of loop counters, pointers, queue/stack contents, and step-by-step plain English explanations.
-
-### 4. ⚡ Side-by-Side Multi-Algorithm Comparison
-- **Concurrent Benchmarking**: Run two algorithms (e.g., **Dijkstra vs. A\*** or **Quick Sort vs. Merge Sort**) on identical input datasets simultaneously.
-- **Live Telemetry Metrics**: Compare execution duration (ms), total nodes visited/inspected, path length, and memory overhead.
-
-### 5. 📍 Multi-Stop Waypoint & TSP Optimization Engine
-- **Traveling Salesperson Problem (TSP)**: Interactive waypoint planning across multiple stops.
-- **Heuristic Solvers**: Nearest-Neighbor heuristics and 2-opt local search optimization to compute efficient closed-loop routes interactively.
-
-### 6. 🌍 Real-World Geographic City Map Routing (Leaflet.js)
-- **Geospatial Mapping**: Overlay graph algorithms directly onto real-world street networks and city coordinate landmarks using Leaflet.js.
-- **Practical Relevance**: Demonstrates how theoretical graph search powers modern GPS navigation and ride-hailing routing engines.
+Whether modeling food delivery route dispatching, avoiding dynamic traffic congestion, or analyzing array partition pivots, AlgoLenz makes algorithmic mechanics transparent and engaging.
 
 ---
 
-## 🔬 Algorithms & Complexities
+## ✨ Key Features
 
-### 🚀 Pathfinding & Graph Algorithms
-| Algorithm | Time Complexity | Space Complexity | Weighted? | Guarantees Shortest Path? |
-| :--- | :---: | :---: | :---: | :---: |
-| **Dijkstra's Algorithm** | $\mathcal{O}((V + E) \log V)$ | $\mathcal{O}(V)$ | ✅ Yes | ✅ Yes (Non-negative weights) |
-| **A\* Search** | $\mathcal{O}(E)$ (Heuristic dependent) | $\mathcal{O}(V)$ | ✅ Yes | ✅ Yes (with Admissible Heuristic) |
-| **Breadth-First Search (BFS)** | $\mathcal{O}(V + E)$ | $\mathcal{O}(V)$ | ❌ No | ✅ Yes (Unweighted only) |
-| **Depth-First Search (DFS)** | $\mathcal{O}(V + E)$ | $\mathcal{O}(V)$ | ❌ No | ❌ No |
-| **Bellman-Ford Algorithm** | $\mathcal{O}(V \times E)$ | $\mathcal{O}(V)$ | ✅ Yes | ✅ Yes (Detects negative cycles) |
+- 🎯 **Interactive 2D Grid Visualizer**: Draw obstacles, paint traffic bottlenecks, place custom waypoints, and generate intricate procedural mazes.
+- 🗺️ **Real-World Geographic City Routing**: Powered by **Leaflet.js**, project Dijkstra and A* algorithms directly onto real city maps and street networks.
+- 🛵 **Multi-Stop Waypoint & TSP Optimizer**: Solve the NP-hard Traveling Salesperson Problem for multi-order pick-up and delivery dispatching.
+- 📊 **Side-by-Side Algorithm Comparison**: Race algorithms simultaneously on identical input configurations to compare visited nodes, path lengths, and runtime (ms).
+- 🔊 **Sorting Engine with Web Audio API**: Watch Bubble, Selection, Insertion, Merge, Quick, and Heap Sort with real-time sound synthesis reflecting element heights and swap entropy.
+- 📜 **Synchronized Pseudocode & Call Inspector**: Follow execution line-by-line with real-time state variable tracking and algorithmic explanations.
+- 🕹️ **Complete Playback Control**: Step forward, step backward, pause, adjust playback speed, or scrub through generation timelines.
 
-### 🔢 Sorting Algorithms
+---
+
+## 🚀 Application Modes
+
+| Mode | Description | Highlights |
+| :--- | :--- | :--- |
+| **Grid Pathfinding** | 2D interactive matrix canvas for graph traversals | Obstacle drawing, traffic costs (+2, +5, +10), 5 maze generators |
+| **Comparison Arena** | Split-screen simultaneous benchmarking | Live metrics: execution time, nodes visited, path cost |
+| **Multi-Stop (TSP)** | Delivery dispatch order optimization | Multi-restaurant pickup & customer delivery route planning |
+| **Geographic City Map** | Real-world road graph routing with Leaflet | Dark stores, hubs, customer endpoints on actual coordinates |
+| **Sorting Visualizer** | Array visualization with Web Audio synthesis | Bar charts, pivot indicators, swap counters, sound frequencies |
+
+---
+
+## 📚 Algorithm Catalog & Complexity
+
+### 1. Pathfinding & Graph Traversals
+
+| Algorithm | Type | Unweighted / Weighted | Time Complexity | Space Complexity | Guarantees Shortest Path? |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Dijkstra's Algorithm** | Greedy Priority Queue | Weighted | $\mathcal{O}((V + E) \log V)$ | $\mathcal{O}(V)$ | ✅ Yes |
+| **A\* Search** | Heuristic ($g(n) + h(n)$) | Weighted | $\mathcal{O}(E)$ (optimal case) | $\mathcal{O}(V)$ | ✅ Yes (admissible heuristic) |
+| **Breadth-First Search (BFS)** | Queue (FIFO) | Unweighted | $\mathcal{O}(V + E)$ | $\mathcal{O}(V)$ | ✅ Yes (unweighted graphs) |
+| **Depth-First Search (DFS)** | Stack (LIFO / Recursion) | Unweighted | $\mathcal{O}(V + E)$ | $\mathcal{O}(V)$ | ❌ No |
+| **Bellman-Ford** | Dynamic Programming | Weighted (incl. negative) | $\mathcal{O}(V \cdot E)$ | $\mathcal{O}(V)$ | ✅ Yes |
+| **Traveling Salesperson (TSP)** | Heuristic / 2-Opt / DP | Complete Graph | NP-Hard ($\mathcal{O}(n^2 2^n)$) | $\mathcal{O}(n)$ | ⚡ Near-Optimal Heuristic |
+
+### 2. Sorting Algorithms
+
 | Algorithm | Best Time | Average Time | Worst Time | Space | Stable? |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **Bubble Sort** | $\Omega(n)$ | $\Theta(n^2)$ | $\mathcal{O}(n^2)$ | $\mathcal{O}(1)$ | ✅ Yes |
-| **Selection Sort** | $\Omega(n^2)$ | $\Theta(n^2)$ | $\mathcal{O}(n^2)$ | $\mathcal{O}(1)$ | ❌ No |
-| **Insertion Sort** | $\Omega(n)$ | $\Theta(n^2)$ | $\mathcal{O}(n^2)$ | $\mathcal{O}(1)$ | ✅ Yes |
-| **Merge Sort** | $\Omega(n \log n)$ | $\Theta(n \log n)$ | $\mathcal{O}(n \log n)$ | $\mathcal{O}(n)$ | ✅ Yes |
-| **Quick Sort** | $\Omega(n \log n)$ | $\Theta(n \log n)$ | $\mathcal{O}(n^2)$ | $\mathcal{O}(\log n)$ | ❌ No |
-| **Heap Sort** | $\Omega(n \log n)$ | $\Theta(n \log n)$ | $\mathcal{O}(n \log n)$ | $\mathcal{O}(1)$ | ❌ No |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Quick Sort** | $\mathcal{O}(n \log n)$ | $\mathcal{O}(n \log n)$ | $\mathcal{O}(n^2)$ | $\mathcal{O}(\log n)$ | ❌ No |
+| **Merge Sort** | $\mathcal{O}(n \log n)$ | $\mathcal{O}(n \log n)$ | $\mathcal{O}(n \log n)$ | $\mathcal{O}(n)$ | ✅ Yes |
+| **Heap Sort** | $\mathcal{O}(n \log n)$ | $\mathcal{O}(n \log n)$ | $\mathcal{O}(n \log n)$ | $\mathcal{O}(1)$ | ❌ No |
+| **Insertion Sort** | $\mathcal{O}(n)$ | $\mathcal{O}(n^2)$ | $\mathcal{O}(n^2)$ | $\mathcal{O}(1)$ | ✅ Yes |
+| **Selection Sort** | $\mathcal{O}(n^2)$ | $\mathcal{O}(n^2)$ | $\mathcal{O}(n^2)$ | $\mathcal{O}(1)$ | ❌ No |
+| **Bubble Sort** | $\mathcal{O}(n)$ | $\mathcal{O}(n^2)$ | $\mathcal{O}(n^2)$ | $\mathcal{O}(1)$ | ✅ Yes |
 
 ---
 
-## 🏗️ System Architecture
+## 🛠️ Tech Stack
 
-```text
-┌──────────────────────────────────────────────────────────────┐
-│                   User Interface Layer                       │
-│    (Navbar, PlaybackBar, ControlPanel, AlgorithmInfoCard)    │
-└──────────────────────────────┬───────────────────────────────┘
-                               │
-┌──────────────────────────────▼───────────────────────────────┐
-│              VisualizerContext (State Pipeline)              │
-│    - Play / Pause / Step Controls    - Speed & Grid Config  │
-│    - Step Queue Dispatcher           - Real-time Telemetry   │
-└──────────────┬───────────────────────────────┬───────────────┘
-               │                               │
-┌──────────────▼──────────────┐ ┌──────────────▼───────────────┐
-│     Algorithmic Engines     │ │    Dual Graphics Renderer    │
-│  - dijkstra.ts, aStar.ts    │ │  - HTML5 Canvas Engine       │
-│  - sorting.ts, tsp.ts       │ │  - Leaflet.js Geospatial Map │
-│  - bfs.ts, dfs.ts           │ │  - Web Audio API (SoundFX)   │
-└─────────────────────────────┘ └──────────────────────────────┘
+```
+AlgoLenz
+ ├── Frontend Framework  : React 18 (Functional Components + Hooks)
+ ├── Language            : TypeScript 5.3 (Type-safe domain definitions)
+ ├── Bundler & Dev Tool  : Vite 5 (Fast HMR & Optimized Bundling)
+ ├── Styling & UI        : Tailwind CSS 3.4 + Lucide React Icons
+ ├── Geospatial Mapping  : Leaflet 1.9 + React-Leaflet 4.2
+ ├── Audio Synthesis     : Web Audio API (Dynamic Frequency Synthesis)
+ └── State Management    : React Context API (VisualizerContext Pipeline)
 ```
 
 ---
 
-## 📂 Project Directory Structure
+## 📂 Project Structure
 
-```text
+```
 ALGO/
-├── public/                    # Static assets & favicons
+├── public/                     # Static assets (favicons, logos)
 ├── src/
-│   ├── algorithms/            # Core algorithmic engines
-│   │   ├── aStar.ts           # A* Pathfinding with Manhattan heuristic
-│   │   ├── bellmanFord.ts     # Bellman-Ford algorithm
-│   │   ├── bfs.ts             # Breadth-First Search
-│   │   ├── dfs.ts             # Depth-First Search
-│   │   ├── dijkstra.ts        # Dijkstra's shortest path
-│   │   ├── sorting.ts         # Bubble, Selection, Insertion, Merge, Quick, Heap
-│   │   └── tsp.ts             # Traveling Salesperson Problem heuristic
+│   ├── algorithms/             # Pure algorithmic TypeScript engines
+│   │   ├── aStar.ts            # A* heuristic pathfinding
+│   │   ├── bellmanFord.ts      # Bellman-Ford algorithm
+│   │   ├── bfs.ts              # Breadth-First Search
+│   │   ├── dfs.ts              # Depth-First Search
+│   │   ├── dijkstra.ts         # Dijkstra's shortest path
+│   │   ├── sorting.ts          # 6 dynamic sorting implementations
+│   │   └── tsp.ts              # Traveling Salesperson solver
 │   ├── components/
-│   │   ├── analytics/         # Statistics and pseudocode inspector
-│   │   │   ├── AlgorithmInfoCard.tsx
-│   │   │   └── StatsPanel.tsx
-│   │   ├── controls/          # Playback and visualizer configuration
-│   │   │   ├── ControlPanel.tsx
-│   │   │   └── PlaybackBar.tsx
-│   │   ├── layout/            # Navigation header and footer
-│   │   │   ├── Navbar.tsx
-│   │   │   └── Footer.tsx
-│   │   └── visualizer/        # Viewport components
-│   │       ├── CityMapView.tsx      # Leaflet real-world map routing
-│   │       ├── ComparisonView.tsx   # Side-by-side benchmarking
-│   │       ├── GridVisualizer.tsx   # 2D pathfinding grid
-│   │       ├── MultiStopView.tsx    # Waypoint routing view
-│   │       └── SortingView.tsx      # Dynamic bar chart sorting view
+│   │   ├── analytics/          # StatsPanel, AlgorithmInfoCard, Complexity cards
+│   │   ├── controls/           # ControlPanel, PlaybackBar, Speed sliders
+│   │   ├── layout/             # Navbar, Footer, Navigation items
+│   │   └── visualizer/         # GridVisualizer, CityMapView, ComparisonView,
+│   │                           # MultiStopView, SortingView
 │   ├── context/
-│   │   └── VisualizerContext.tsx    # Central state management
+│   │   └── VisualizerContext.tsx # Centralized execution & animation state
 │   ├── types/
-│   │   └── routing.ts         # TypeScript interfaces & types
+│   │   └── routing.ts          # Global interfaces, node types & step definitions
 │   ├── utils/
-│   │   ├── cityData.ts        # Geographic coordinates & map points
-│   │   ├── gridGenerator.ts   # Grid initialization and maze algorithms
-│   │   └── SoundFX.ts         # Web Audio synthesizer
-│   ├── App.tsx                # Main application component
-│   ├── main.tsx               # Application entrypoint
-│   └── index.css              # Global styles & Tailwind utilities
-├── package.json               # Dependencies and scripts
-├── tailwind.config.js         # Tailwind CSS styling configuration
-├── tsconfig.json              # TypeScript compiler settings
-└── vite.config.ts             # Vite build configuration
+│   │   ├── cityData.ts         # City street graph nodes and landmarks
+│   │   ├── gridGenerator.ts    # Maze generation algorithms
+│   │   └── SoundFX.ts          # Web Audio tone synthesizer
+│   ├── App.tsx                 # Root application component & layout router
+│   ├── index.css               # Global styles and Tailwind directives
+│   └── main.tsx                # React DOM entrypoint
+├── package.json                # Project dependencies and npm scripts
+├── tsconfig.json               # TypeScript configuration
+├── tailwind.config.js          # Tailwind theme configuration
+└── vite.config.ts              # Vite server & build configurations
 ```
 
 ---
 
-## 🚀 Getting Started
+## 💻 Getting Started
 
 ### Prerequisites
-Make sure you have Node.js and npm installed on your system:
-- **Node.js**: `v18.0.0` or higher
-- **npm**: `v9.0.0` or higher
 
-### Installation
+- **Node.js**: v18.0.0 or higher
+- **npm**: v9.0.0 or higher
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/NAITIK-builds/Algo.git
-   cd Algo
-   ```
+### 1. Clone the Repository
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+```bash
+git clone https://github.com/NAITIK-builds/Algo.git
+cd Algo
+```
 
-3. **Start the local development server:**
-   ```bash
-   npm run dev
-   ```
-   Open your browser at `http://localhost:5173` to explore the visualizer.
+### 2. Install Dependencies
 
-4. **Build for production:**
-   ```bash
-   npm run build
-   ```
+```bash
+npm install
+```
 
----
+### 3. Run Development Server
 
-## 👥 Project Team & Credits
+```bash
+npm run dev
+```
 
-This project was developed as a Bachelor of Computer Application (BCA) Project at **PSIT College of Higher Education, Kanpur** (Affiliated with **Chhatrapati Shahu Ji Maharaj University**).
+Visit `http://localhost:5173` in your browser.
 
-### 🎓 Team Members
-| Name | University Roll Number | Primary Contribution |
-| :--- | :---: | :--- |
-| **Naitik** *(Team Lead)* | `24116002322` | Core Architecture, State Pipeline & Pathfinding Engine |
-| **Kashish Gupta** | `24116002274` | Sorting Algorithms & Web Audio SoundFX Synthesis |
-| **Naitik Mishra** | `24116002324` | Geospatial Leaflet Map Engine & Multi-Stop TSP Solver |
-| **Khushboo Rajpoot** | `24116002277` | Synchronized Pseudocode Inspector & Analytics Benchmarking |
+### 4. Build for Production
 
-### 👨‍🏫 Project Supervisor
-- **Dr. Amit Yadav**, Associate Professor, PSIT College of Higher Education
+```bash
+npm run build
+```
+
+The production-ready artifacts will be compiled into the `dist/` directory.
 
 ---
 
-## 📚 References & Acknowledgments
+## 👥 Team & Contributors
 
-1. **VisuAlgo Platform**: Steven Halim & Felix Halim (National University of Singapore) — [visualgo.net](https://visualgo.net/)
-2. **Introduction to Algorithms (CLRS)**: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein (MIT Press).
-3. **Dijkstra's Algorithm**: E. W. Dijkstra (1959), *Numerische Mathematik*.
-4. **A\* Search Heuristic**: P. E. Hart, N. J. Nilsson, B. Raphael (1968), *IEEE Transactions on Systems Science and Cybernetics*.
-5. **Leaflet.js**: Vladimir Agafonkin — [leafletjs.com](https://leafletjs.com/)
+This project was developed by students of **Bachelors of Computer Application (BCA)** at **PSIT College of Higher Education**, affiliated with **Chhatrapati Shahu Ji Maharaj University (CSJMU), Kanpur**.
+
+| Name | Roll Number | Primary Role / Contribution |
+| :--- | :--- | :--- |
+| **Naitik** | `24116002322` | **Team Lead**, System Architecture, Graph Pathfinding Engine |
+| **Kashish Gupta** | `24116002274` | Sorting Algorithm Engine & Web Audio Visualizer |
+| **Naitik Mishra** | `24116002324` | Geospatial Map Engine (Leaflet) & Multi-Stop TSP Solver |
+| **Khushboo Rajpoot** | `24116002277` | Comparative Benchmarking Arena & Analytics UI |
+
+**Faculty Supervisor:** **Dr. Amit Yadav** (*Associate Professor, PSIT College of Higher Education*)
+
+---
+
+## 📄 References & Acknowledgments
+
+- **VisuAlgo** by Dr. Steven Halim & Felix Halim (National University of Singapore) — [visualgo.net](https://visualgo.net/)
+- Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). *Introduction to Algorithms* (3rd ed.). MIT Press.
+- Dijkstra, E. W. (1959). *A note on two problems in connexion with graphs*. Numerische Mathematik.
+- Hart, P. E., Nilsson, N. J., & Raphael, B. (1968). *A Formal Basis for the Heuristic Determination of Minimum Cost Paths*. IEEE Transactions on SSC.
 
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by the AlgoLenz Team</sub>
+  <sub>Built with ❤️ by the AlgoLenz Team (2024–2025).</sub>
 </div>
