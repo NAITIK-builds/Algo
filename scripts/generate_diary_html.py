@@ -1,0 +1,988 @@
+import os
+import sys
+
+# Ensure directories exist
+os.makedirs("scripts", exist_ok=True)
+
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minor Project Progress Diary (BCA-5005) - AlgoLenz</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 15mm 12mm 15mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #525659;
+      font-family: "Times New Roman", Times, serif;
+      color: #000;
+      line-height: 1.35;
+    }
+
+    .no-print-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: #1e293b;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      z-index: 9999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      font-family: sans-serif;
+      font-size: 14px;
+    }
+
+    .print-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .print-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .page-sheet {
+      width: 210mm;
+      height: 297mm;
+      margin: 65px auto 25px auto;
+      padding: 14mm 16mm 14mm 16mm;
+      background: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+      page-break-inside: avoid;
+    }
+
+    /* Standard College Header */
+    .college-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #000;
+      padding-bottom: 5px;
+      margin-bottom: 12px;
+    }
+
+    .college-header .header-text {
+      text-align: left;
+    }
+
+    .college-header .inst-name {
+      font-size: 16pt;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      margin: 0;
+      color: #000;
+    }
+
+    .college-header .inst-addr {
+      font-size: 8.5pt;
+      margin-top: 3px;
+      color: #222;
+    }
+
+    .college-header .inst-logo {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* Standard College Footer */
+    .college-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #777;
+      padding-top: 4px;
+      font-size: 9pt;
+      font-style: italic;
+    }
+
+    /* Content Area */
+    .page-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Typography */
+    h1.main-title {
+      font-size: 17pt;
+      font-weight: bold;
+      text-align: center;
+      margin: 8px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    h2.sub-title {
+      font-size: 14pt;
+      font-weight: bold;
+      text-align: center;
+      margin: 4px 0;
+    }
+
+    h3.section-heading {
+      font-size: 13pt;
+      font-weight: bold;
+      text-align: center;
+      margin: 10px 0;
+      text-decoration: underline;
+    }
+
+    p {
+      font-size: 11pt;
+      text-align: justify;
+      margin: 4px 0 6px 0;
+      line-height: 1.4;
+    }
+
+    /* Tables */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 10pt;
+    }
+
+    table.data-table th, table.data-table td {
+      border: 1px solid #000;
+      padding: 5px 8px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    table.data-table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    /* Progress Log Weekly Boxes */
+    .log-box {
+      border: 1.5px solid #000;
+      background: #ffffff;
+      box-sizing: border-box;
+      padding: 8px 12px;
+    }
+
+    .log-box-title {
+      font-weight: bold;
+      font-size: 11pt;
+      text-decoration: underline;
+      margin-bottom: 4px;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 11pt;
+    }
+
+    /* Print Overrides */
+    @media print {
+      body {
+        background: none;
+      }
+      .no-print-bar {
+        display: none !important;
+      }
+      .page-sheet {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        height: 100vh;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="no-print-bar">
+    <div>
+      <strong>AlgoLenz &mdash; PSIT BCA-5005 Minor Project Progress Diary</strong> (21 Pages Matching Template)
+    </div>
+    <button class="print-btn" onclick="window.print()">
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+      Print / Save as PDF
+    </button>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PAGE 1: COVER PAGE -->
+  <!-- ========================================== -->
+  <div class="page-sheet">
+    <div class="college-header">
+      <div class="header-text">
+        <div class="inst-name">PSIT-College of Higher Education</div>
+        <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
+      </div>
+      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+    </div>
+
+    <div class="page-body" style="text-align: center; justify-content: space-around;">
+      <div>
+        <h1 class="main-title" style="font-size: 18pt; margin-top: 15px;">DEPARTMENT OF COMPUTER APPLICATIONS</h1>
+        <h2 style="font-size: 16pt; margin: 15px 0 5px 0; font-weight: bold;">Minor Project</h2>
+        <div style="font-size: 15pt; font-weight: bold;">(2026-2027)</div>
+      </div>
+
+      <div>
+        <h2 style="font-size: 20pt; font-weight: bold; letter-spacing: 1px; margin: 10px 0;">PROGRESS DIARY</h2>
+        <div style="font-size: 14pt; font-weight: bold;">(BCA-5005)</div>
+      </div>
+
+      <div style="padding: 10px 25px;">
+        <div style="font-size: 15pt; font-weight: bold; line-height: 1.4; color: #111;">
+          AlgoLenz: Interactive Data Structures, Pathfinding & Sorting Visualization Platform
+        </div>
+      </div>
+
+      <div style="font-size: 12.5pt; font-weight: bold; line-height: 1.8;">
+        <div>Naitik, Roll No: 24116002322</div>
+        <div>Kashish Gupta, Roll No: 24116002274</div>
+        <div>Naitik Mishra, Roll No: 24116002324</div>
+        <div>Khushboo Rajpoot, Roll No: 24116002277</div>
+      </div>
+
+      <div style="font-size: 13pt; font-weight: bold;">
+        Project_Id: BCA-2026-MP-042
+      </div>
+
+      <div style="font-size: 13pt; font-weight: bold; line-height: 1.5;">
+        <div>Supervisor Name: Dr. Amit Yadav</div>
+        <div style="font-size: 12pt; font-weight: normal;">(Professor)</div>
+      </div>
+
+      <div style="margin: 10px 0;">
+        <img src="psit_logo.jpg" style="height: 75px; width: auto;" alt="PSIT Logo">
+      </div>
+    </div>
+
+    <div class="college-footer">
+      <span>Department of Computer Applications</span>
+      <span>Minor Project 2026-27</span>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PAGE 2: VISION, MISSION, PEOS, PO1 -->
+  <!-- ========================================== -->
+  <div class="page-sheet">
+    <div class="college-header">
+      <div class="header-text">
+        <div class="inst-name">PSIT-College of Higher Education</div>
+        <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
+      </div>
+      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+    </div>
+
+    <div class="page-body">
+      <h3 class="section-heading" style="text-decoration: none;">Department Vision Statement</h3>
+      <p style="text-align: center; font-style: italic; margin-bottom: 15px;">
+        To be a recognized department of Computer Application that produces versatile computer professional with the ability to adapt to the changing needs of computer and related Industry.
+      </p>
+
+      <h3 class="section-heading" style="text-decoration: none;">Department Mission Statements</h3>
+      <p>The mission of the Department of Computer Applications is:</p>
+      <ol style="font-size: 10.5pt; line-height: 1.4; padding-left: 25px;">
+        <li>To provide broad based quality education with knowledge and attitude to succeed in Computer Application career.</li>
+        <li>To prepare students for emerging trends in Computer and related industry.</li>
+        <li>To develop competence in students by providing them skills and aptitude to foster culture of continuous and lifelong learning.</li>
+        <li>To develop practicing professionals who investigate, design and find workable solution to the related complex problems with awareness and concern for society and environment.</li>
+      </ol>
+
+      <h3 class="section-heading" style="text-decoration: none;">Program Educational Objectives (PEOs)</h3>
+      <div style="font-size: 10pt; line-height: 1.4;">
+        <p><strong>PEO-1</strong> Graduates will be efficient leading professionals with the knowledge of computer application discipline that enables them to pursue higher education and/or successful careers in national and global realms.</p>
+        <p><strong>PEO-2</strong> Graduates will possess the capability of designing successful and sustainable innovative solutions to real life problems that are technically sound, economically viable and socially acceptable.</p>
+        <p><strong>PEO-3</strong> Graduates will be competent team leaders, effective communicators and capable of working in multidisciplinary teams following ethical values.</p>
+        <p><strong>PEO-4</strong> Graduates will be capable of adapting to new technologies/tools, constantly upgrading their knowledge and skills with an attitude for life-long learning.</p>
+        <p><strong>PEO-5</strong> Graduates with an aptitude of self-employment will be able to initiate and build upon entrepreneurial ventures or demonstrate enterprising expertise for their employer organization.</p>
+      </div>
+
+      <h3 class="section-heading" style="text-decoration: none; margin-top: 15px;">Department Program Outcomes (POs)</h3>
+      <p style="font-size: 10pt;">The students of Computer Application Department will be able:</p>
+      <table class="data-table">
+        <tr>
+          <th style="width: 12%;">PO1</th>
+          <td><strong>Computer Application Knowledge:</strong> Apply the knowledge of mathematics, social science, fundamentals of computer application, and management to the solution of complex problems.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="college-footer">
+      <span>Department of Computer Applications</span>
+      <span>Minor Project 2026-27</span>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PAGE 3: PO2 TO PO10 -->
+  <!-- ========================================== -->
+  <div class="page-sheet">
+    <div class="college-header">
+      <div class="header-text">
+        <div class="inst-name">PSIT-College of Higher Education</div>
+        <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
+      </div>
+      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+    </div>
+
+    <div class="page-body">
+      <table class="data-table" style="font-size: 9.5pt;">
+        <tr>
+          <th style="width: 12%;">PO2</th>
+          <td><strong>Problem Analysis:</strong> Identify, formulate, review research literature, and analyse complex problems reaching substantiated conclusions using basic principles.</td>
+        </tr>
+        <tr>
+          <th>PO3</th>
+          <td><strong>Design/Development of Solutions:</strong> Design solutions for complex computer application problems and design system processes that meet the specified needs with appropriate consideration for the public health and safety, and the cultural, societal, and environmental considerations.</td>
+        </tr>
+        <tr>
+          <th>PO4</th>
+          <td><strong>Conduct Investigations of Complex Problems:</strong> Use research-based knowledge and research methods including design of experiments, including analysis and interpretation of data, and synthesis of information to provide valid conclusions for complex problems –
+            <ul style="margin: 3px 0; padding-left: 20px;">
+              <li>that cannot be solved by straightforward application of knowledge, theories and techniques applicable to the Computer Application discipline.</li>
+              <li>that may not have a unique solution.</li>
+              <li>that require consideration of appropriate constraints / requirements not explicitly given in the problem statement.</li>
+              <li>which need to be defined within appropriate mathematical framework and that often require use of modern computational concepts and tools.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>PO5</th>
+          <td><strong>Modern Tool Usage:</strong> Create, select, and apply appropriate techniques, resources, and modern Computer Application and IT tools including prediction and modelling to complex Computer Application activities with an understanding of the limitations.</td>
+        </tr>
+        <tr>
+          <th>PO6</th>
+          <td><strong>The Computer Professionals and Society:</strong> Apply reasoning informed by the contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to the professional computer application practice.</td>
+        </tr>
+        <tr>
+          <th>PO7</th>
+          <td><strong>Environment and Sustainability:</strong> Understand the impact of the professional computer application solutions in societal and environmental contexts, and demonstrate the knowledge of, and need for sustainable development.</td>
+        </tr>
+        <tr>
+          <th>PO8</th>
+          <td><strong>Ethics:</strong> Apply ethical principles and commit to professional ethics and responsibilities and norms of the computer application practice.</td>
+        </tr>
+        <tr>
+          <th>PO9</th>
+          <td><strong>Individual and Teamwork:</strong> Function effectively as an individual, and as a member or leader in diverse teams, and in multidisciplinary settings.</td>
+        </tr>
+        <tr>
+          <th>PO10</th>
+          <td><strong>Communication:</strong> Communicate effectively on complex Computer Application activities with the community and with society at large, such as, being able to comprehend and write effective reports and design/maintain documentation, make effective presentations, and give and receive clear instructions.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="college-footer">
+      <span>Department of Computer Applications</span>
+      <span>Minor Project 2026-27</span>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PAGE 4: PO11-PO12, COS, CO-PO MAPPING -->
+  <!-- ========================================== -->
+  <div class="page-sheet">
+    <div class="college-header">
+      <div class="header-text">
+        <div class="inst-name">PSIT-College of Higher Education</div>
+        <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
+      </div>
+      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+    </div>
+
+    <div class="page-body">
+      <table class="data-table" style="font-size: 9.5pt; margin-bottom: 12px;">
+        <tr>
+          <th style="width: 12%;">PO11</th>
+          <td><strong>Project Management and Finance:</strong> Demonstrate knowledge and understanding of the computer application and management principles and apply these to one’s own work, as a member and leader in a team, to manage projects and in multidisciplinary environments.</td>
+        </tr>
+        <tr>
+          <th>PO12</th>
+          <td><strong>Life-long Learning:</strong> Recognize the need for and have the preparation and ability to engage in independent and lifelong learning in the broadest context of technological change.</td>
+        </tr>
+      </table>
+
+      <h3 class="section-heading" style="text-decoration: none; margin: 10px 0 6px 0; text-align: left;">Course Outcomes:</h3>
+      <p style="font-size: 10pt; margin-bottom: 4px;">On successful completion of this course:</p>
+      <table class="data-table" style="font-size: 9.5pt; margin-bottom: 12px;">
+        <tr>
+          <th style="width: 12%;">S No</th>
+          <th>Course Outcome</th>
+        </tr>
+        <tr>
+          <td style="text-align: center; font-weight: bold;">CO1</td>
+          <td><strong>Identify [L1: Remember]</strong> and finalize the problem statement by surveying a variety of domains.</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; font-weight: bold;">CO2</td>
+          <td><strong>Specify [L2: Understand]</strong> the design methodologies appropriate to solve the problem.</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; font-weight: bold;">CO3</td>
+          <td><strong>Apply [L3: Apply]</strong> appropriate tools and techniques, resources to implement design exhibiting integrity and ethical behaviour of engineering practices.</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; font-weight: bold;">CO4</td>
+          <td><strong>Test and defend [L4: Analyse]</strong> their work along with their team members through reports and presentations.</td>
+        </tr>
+      </table>
+
+      <h3 class="section-heading" style="text-decoration: none; margin: 10px 0 6px 0; text-align: left;">CO-PO/PSO Mapping:</h3>
+      <table class="data-table" style="font-size: 9pt; text-align: center;">
+        <tr>
+          <th>CO</th>
+          <th>PO1</th>
+          <th>PO2</th>
+          <th>PO3</th>
+          <th>PO4</th>
+          <th>PO5</th>
+          <th>PO6</th>
+          <th>PO7</th>
+          <th>PO8</th>
+          <th>PO9</th>
+          <th>PO10</th>
+          <th>PO11</th>
+          <th>PO12</th>
+        </tr>
+        <tr>
+          <td><strong>CO1</strong></td><td>3</td><td></td><td></td><td></td><td></td><td></td><td>3</td><td>3</td><td></td><td>3</td><td>3</td><td>3</td>
+        </tr>
+        <tr>
+          <td><strong>CO2</strong></td><td></td><td>3</td><td></td><td>2</td><td></td><td>3</td><td></td><td>3</td><td>3</td><td></td><td>3</td><td></td>
+        </tr>
+        <tr>
+          <td><strong>CO3</strong></td><td></td><td></td><td>3</td><td>2</td><td>3</td><td></td><td></td><td>3</td><td>3</td><td></td><td>3</td><td>3</td>
+        </tr>
+        <tr>
+          <td><strong>CO4</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>3</td><td>3</td><td>3</td><td>3</td><td></td>
+        </tr>
+        <tr style="font-weight: bold; background: #fafafa;">
+          <td>Avg</td><td>3</td><td>3</td><td>3</td><td>2</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="college-footer">
+      <span>Department of Computer Applications</span>
+      <span>Minor Project 2026-27</span>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PAGE 5: INNER TITLE PAGE (WITH BORDER BOX) -->
+  <!-- ========================================== -->
+  <div class="page-sheet">
+    <div class="college-header">
+      <div class="header-text">
+        <div class="inst-name">PSIT-College of Higher Education</div>
+        <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
+      </div>
+      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+    </div>
+
+    <div class="page-body" style="padding: 10px;">
+      <div style="border: 2px solid #000; height: 100%; padding: 25px 20px; text-align: center; display: flex; flex-direction: column; justify-content: space-around;">
+        <div>
+          <div style="font-size: 16pt; font-weight: bold; line-height: 1.4; color: #000;">
+            AlgoLenz: Interactive Data Structures, Pathfinding & Sorting Visualization Platform
+          </div>
+          <div style="font-size: 13pt; margin: 15px 0 5px 0;">A</div>
+          <div style="font-size: 12pt; line-height: 1.5;">
+            Report submitted in partial fulfillment of the requirement for the degree of
+          </div>
+          <div style="font-size: 15pt; font-weight: bold; margin-top: 5px;">BCA</div>
+        </div>
+
+        <div>
+          <div style="font-size: 12pt; margin-bottom: 5px;">Under the Supervision of</div>
+          <div style="font-size: 14pt; font-weight: bold;">Dr. Amit Yadav</div>
+          <div style="font-size: 11pt;">(Professor)</div>
+        </div>
+
+        <div>
+          <div style="font-size: 12pt; margin-bottom: 6px; font-weight: bold;">By</div>
+          <div style="font-size: 12pt; font-weight: bold; line-height: 1.6;">
+            <div>Naitik (24116002322)</div>
+            <div>Kashish Gupta (24116002274)</div>
+            <div>Naitik Mishra (24116002324)</div>
+            <div>Khushboo Rajpoot (24116002277)</div>
+          </div>
+        </div>
+
+        <div>
+          <img src="psit_logo.jpg" style="height: 65px; width: auto; margin-bottom: 10px;" alt="PSIT Logo">
+          <div style="font-size: 13pt; font-weight: bold;">PSIT College Of Higher Education, Kanpur</div>
+          <div style="font-size: 12pt; font-weight: bold;">C.S.J.M. University</div>
+          <div style="font-size: 12pt; font-weight: bold;">Kanpur</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="college-footer">
+      <span>Department of Computer Applications</span>
+      <span>Minor Project 2026-27</span>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PAGE 6: DECLARATION -->
+  <!-- ========================================== -->
+  <div class="page-sheet">
+    <div class="college-header">
+      <div class="header-text">
+        <div class="inst-name">PSIT-College of Higher Education</div>
+        <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
+      </div>
+      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+    </div>
+
+    <div class="page-body">
+      <h2 class="sub-title" style="text-decoration: underline; margin-top: 30px; margin-bottom: 35px; letter-spacing: 1px;">DECLARATION</h2>
+
+      <p style="font-size: 12pt; line-height: 1.6; margin-bottom: 20px;">
+        We hereby declare that the work presented in this report entitled <strong>“AlgoLenz: Interactive Data Structures, Pathfinding & Sorting Visualization Platform”</strong>, was carried out by us. We have not submitted the matter embodied in this report for the award of any other degree or diploma of any other University or Institute.
+      </p>
+
+      <p style="font-size: 12pt; line-height: 1.6; margin-bottom: 20px;">
+        We have given due credit to the original authors/sources for all the words, ideas, diagrams, graphics, computer programs, experiments, results, that are not my original contribution. We have used quotation marks to identify verbatim sentences and given credit to the original authors/sources.
+      </p>
+
+      <p style="font-size: 12pt; line-height: 1.6; margin-bottom: 50px;">
+        We affirm that no portion of my work is plagiarized, and the experiments and results reported in the report are not manipulated. In the event of a complaint of plagiarism and the manipulation of the experiments and results, we shall be fully responsible and answerable.
+      </p>
+
+      <div style="font-size: 12pt; line-height: 2.2; margin-top: 30px; padding-left: 20px;">
+        <div><strong>Name :</strong> Naitik, Kashish Gupta, Naitik Mishra, Khushboo Rajpoot</div>
+        <div><strong>Roll. No :</strong> 24116002322, 24116002274, 24116002324, 24116002277</div>
+        <div style="margin-top: 25px;"><strong>Signature :</strong> __________________________________________________</div>
+      </div>
+    </div>
+
+    <div class="college-footer">
+      <span>Department of Computer Applications</span>
+      <span>Minor Project 2026-27</span>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PAGE 7: CERTIFICATE -->
+  <!-- ========================================== -->
+  <div class="page-sheet">
+    <div class="college-header">
+      <div class="header-text">
+        <div class="inst-name">PSIT-College of Higher Education</div>
+        <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
+      </div>
+      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+    </div>
+
+    <div class="page-body">
+      <h2 class="sub-title" style="text-decoration: underline; margin-top: 30px; margin-bottom: 40px; letter-spacing: 1px;">Certificate</h2>
+
+      <p style="font-size: 12pt; line-height: 1.7; margin-bottom: 20px; text-indent: 40px;">
+        This is to certify that Project Report entitled <strong>“AlgoLenz: Interactive Data Structures, Pathfinding & Sorting Visualization Platform”</strong> which is submitted by <strong>Naitik (24116002322), Kashish Gupta (24116002274), Naitik Mishra (24116002324), and Khushboo Rajpoot (24116002277)</strong> in partial fulfilment of the requirement for the award of degree <strong>B.C.A</strong> of PSIT-College Of Higher Education, affiliated to C.S.J.M. University, Kanpur is a record of the candidates own work carried out by them under my/our supervision.
+      </p>
+
+      <p style="font-size: 12pt; line-height: 1.7; margin-bottom: 70px; text-indent: 40px;">
+        The project embodies result of original work and studies carried out by the students themselves and the contents of the project do not form the basis for the award of any other degree to the candidate or to anybody else.
+      </p>
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; padding: 0 30px; margin-top: 60px;">
+        <div style="text-align: left; font-size: 12pt; line-height: 1.6;">
+          <div>Signature: __________________________</div>
+          <div style="margin-top: 10px; font-weight: bold;">HOD BCA</div>
+          <div style="font-size: 10.5pt;">Department of Computer Applications</div>
+        </div>
+        <div style="text-align: right; font-size: 12pt; line-height: 1.6;">
+          <div>Signature: __________________________</div>
+          <div style="margin-top: 10px; font-weight: bold;">Dr. Amit Yadav</div>
+          <div style="font-size: 10.5pt;">Supervisor, Professor</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="college-footer">
+      <span>Department of Computer Applications</span>
+      <span>Minor Project 2026-27</span>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PAGE 8: ABSTRACT -->
+  <!-- ========================================== -->
+  <div class="page-sheet">
+    <div class="college-header">
+      <div class="header-text">
+        <div class="inst-name">PSIT-College of Higher Education</div>
+        <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
+      </div>
+      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+    </div>
+
+    <div class="page-body">
+      <h2 class="sub-title" style="text-decoration: underline; margin-top: 20px; margin-bottom: 25px; letter-spacing: 1px;">Abstract</h2>
+
+      <p style="font-size: 12pt; line-height: 1.5; text-indent: 35px;">
+        In contemporary computer science pedagogy, students frequently encounter cognitive friction when attempting to bridge the conceptual gap between theoretical pseudocode and dynamic runtime algorithmic behavior. Abstract notions such as priority queue node relaxations, heuristic evaluations, array partitioning, and recursive backtracking remain difficult to comprehend using static 2D textbook diagrams. To resolve this instructional bottleneck, this project introduces <strong>AlgoLenz</strong>, an interactive, high-performance web-based algorithm visualization and telemetry benchmarking platform inspired by pedagogical environments like VisuAlgo.
+      </p>
+
+      <p style="font-size: 12pt; line-height: 1.5; text-indent: 35px;">
+        AlgoLenz provides an end-to-end multi-paradigm simulation suite developed with React 18, TypeScript 5, Vite, and Tailwind CSS. The platform is structured around five core modules: (1) an <strong>Interactive 2D Grid Pathfinding Visualizer</strong> that simulates Dijkstra’s algorithm, A* search, Breadth-First Search (BFS), Depth-First Search (DFS), and Bellman-Ford across weighted grids, custom terrain weights, and procedural mazes (Recursive Division and Random Walls); (2) a <strong>Geospatial Map Routing Engine</strong> integrated with Leaflet.js that executes shortest path algorithms on real-world road networks and geographical coordinates; (3) a <strong>Multi-Stop Traveling Salesperson Problem (TSP) Optimizer</strong> modeling realistic delivery dispatch heuristics across distributed waypoints; (4) a <strong>Comparative Arena</strong> that executes dual algorithms concurrently under identical input conditions to evaluate time complexity, nodes explored, and path lengths; and (5) an <strong>Audio-Visual Sorting Engine</strong> visualizing Bubble, Selection, Insertion, Merge, Quick, and Heap Sort with real-time audio frequency synthesis generated through the Web Audio API to mirror element swaps and partition boundaries.
+      </p>
+
+      <p style="font-size: 12pt; line-height: 1.5; text-indent: 35px;">
+        Architected with a decoupled state machine powered by the React Context API, AlgoLenz features bidirectional playback controls (step-forward, step-backward, pause, speed throttle) and synchronized code inspectors highlighting active lines of code in real time. The resulting platform delivers an accessible, production-ready educational tool that significantly improves student comprehension of computational complexity, graph theory, and sorting efficiency.
+      </p>
+    </div>
+
+    <div class="college-footer">
+      <span>Department of Computer Applications</span>
+      <span>Minor Project 2026-27</span>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PAGE 9: SYNOPSIS (PLACEHOLDER) -->
+  <!-- ========================================== -->
+  <div class="page-sheet">
+    <div class="college-header">
+      <div class="header-text">
+        <div class="inst-name">PSIT-College of Higher Education</div>
+        <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
+      </div>
+      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+    </div>
+
+    <div class="page-body" style="text-align: center; justify-content: center;">
+      <h2 class="sub-title" style="text-decoration: underline; margin-bottom: 25px;">Synopsis</h2>
+      <div style="font-size: 13pt; font-weight: bold; margin-bottom: 20px;">
+        (Attach the signed copy of synopsis here).
+      </div>
+      <div style="font-size: 11pt; color: #555; font-style: italic;">
+        (This page should not be printed)
+      </div>
+    </div>
+
+    <div class="college-footer">
+      <span>Department of Computer Applications</span>
+      <span>Minor Project 2026-27</span>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PAGE 10: PROJECT SCHEDULE (ODD SEM 2026-2027) -->
+  <!-- ========================================== -->
+  <div class="page-sheet">
+    <div class="college-header">
+      <div class="header-text">
+        <div class="inst-name">PSIT-College of Higher Education</div>
+        <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
+      </div>
+      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+    </div>
+
+    <div class="page-body">
+      <div style="text-align: center; font-style: italic; font-size: 11pt; margin-top: 5px;">Minor Project-Time Line</div>
+      <h2 class="sub-title" style="margin-top: 5px; margin-bottom: 20px;">PROJECT SCHEDULE ODD SEM 2026-2027</h2>
+
+      <table class="data-table" style="font-size: 10pt; line-height: 1.4;">
+        <tr>
+          <th style="width: 28%;">ACTIVITY</th>
+          <th style="width: 20%;">DEADLINE</th>
+          <th style="width: 25%;">PERSON INCHARGE</th>
+          <th style="width: 27%;">DOCUMENT/FORM</th>
+        </tr>
+        <tr>
+          <td><strong>Title/Group Formation/<br>Supervisor Allocation</strong></td>
+          <td style="text-align: center;">Till 24<sup>th</sup> July-2026</td>
+          <td style="text-align: center;">Supervisor/Group leader</td>
+          <td style="text-align: center;">Project Proposal</td>
+        </tr>
+        <tr>
+          <td><strong>Proposal Submission</strong></td>
+          <td style="text-align: center;">Till 14<sup>th</sup> Aug-2026</td>
+          <td style="text-align: center;">Supervisor/DPC</td>
+          <td style="text-align: center;">Project Proposal</td>
+        </tr>
+        <tr>
+          <td><strong>Progress Evaluation 1</strong></td>
+          <td style="text-align: center;">During CT-I</td>
+          <td style="text-align: center;">DPC/ Evaluators</td>
+          <td style="text-align: center;">Power Point Presentation/Synopsis</td>
+        </tr>
+        <tr>
+          <td><strong>Weekly performance Monitoring</strong></td>
+          <td style="text-align: center;">Throughout the semester</td>
+          <td style="text-align: center;">Supervisor</td>
+          <td style="text-align: center;">Project Diary</td>
+        </tr>
+        <tr>
+          <td><strong>Progress Evaluation 2</strong></td>
+          <td style="text-align: center;">During CT-II</td>
+          <td style="text-align: center;">DPC/ Evaluators</td>
+          <td style="text-align: center;">Power Point Presentation</td>
+        </tr>
+        <tr>
+          <td><strong>End Semester Report (Project work Submission)/<br>Final Evaluation</strong></td>
+          <td style="text-align: center;">During PU</td>
+          <td style="text-align: center;">Supervisor</td>
+          <td style="text-align: center;">Project Diary/ Power Point Presentation</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="college-footer">
+      <span>Department of Computer Applications</span>
+      <span>Minor Project 2026-27</span>
+    </div>
+  </div>
+"""
+
+weeks_data = [
+    {"week_num": 1, "date": "01/08/2026"},
+    {"week_num": 2, "date": "08/08/2026"},
+    {"week_num": 3, "date": "16/08/2026"},
+    {"week_num": 4, "date": "22/08/2026"},
+    {"week_num": 5, "date": "29/08/2026"},
+    {"week_num": 6, "date": "05/09/2026"},
+    {"week_num": 7, "date": "12/09/2026"},
+    {"week_num": 8, "date": "19/09/2026"},
+    {"week_num": 9, "date": "26/09/2026"},
+    {"week_num": 10, "date": "03/10/2026"},
+]
+
+for w in weeks_data:
+    page_html = f"""
+  <!-- ========================================== -->
+  <!-- PAGE {10 + w['week_num']}: WEEK {w['week_num']} PROGRESS SHEET -->
+  <!-- ========================================== -->
+  <div class="page-sheet">
+    <div class="college-header">
+      <div class="header-text">
+        <div class="inst-name">PSIT-College of Higher Education</div>
+        <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
+      </div>
+      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+    </div>
+
+    <div class="page-body">
+      <div style="text-align: center; font-size: 10pt; font-weight: bold; margin-bottom: 3px;">
+        (To be filled by Students for every week to show the Weekly Progress of Project)
+      </div>
+
+      <div class="meta-row" style="font-weight: bold; font-size: 10.5pt; margin-bottom: 2px;">
+        <div>Subject Code: BCA 5005</div>
+        <div>Group Id: BCA-2026-MP-042</div>
+      </div>
+      <div class="meta-row" style="font-weight: bold; font-size: 10.5pt; margin-bottom: 4px;">
+        <div>Meeting Date: {w['date']}</div>
+        <div style="font-size: 10.5pt; color: #111;">Week &mdash; {w['week_num']}</div>
+      </div>
+
+      <div style="text-align: center; font-weight: bold; font-size: 11pt; margin-bottom: 3px;">
+        Session 2026–2027 (Odd Semester)
+      </div>
+
+      <table class="data-table" style="font-size: 9.5pt; margin-bottom: 8px;">
+        <tr>
+          <th style="width: 7%;">S No</th>
+          <th style="width: 25%;">Roll Number</th>
+          <th style="width: 30%;">Student Name</th>
+          <th style="width: 21%;">Status on Meeting<br>Date (Present /Absent)</th>
+          <th style="width: 17%;">Student<br>Signature</th>
+        </tr>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td>24116002322</td>
+          <td>Naitik</td>
+          <td style="text-align: center;"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">2</td>
+          <td>24116002274</td>
+          <td>Kashish Gupta</td>
+          <td style="text-align: center;"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">3</td>
+          <td>24116002324</td>
+          <td>Naitik Mishra</td>
+          <td style="text-align: center;"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">4</td>
+          <td>24116002277</td>
+          <td>Khushboo Rajpoot</td>
+          <td style="text-align: center;"></td>
+          <td></td>
+        </tr>
+      </table>
+
+      <div style="font-size: 9.5pt; line-height: 1.4; margin-bottom: 6px;">
+        <div><strong>Project Title :</strong> AlgoLenz: Interactive Data Structures, Pathfinding & Sorting Visualization Platform</div>
+        <div><strong>Name of Project Supervisor:</strong> Dr. Amit Yadav</div>
+      </div>
+
+      <!-- WORK DONE IN CURRENT WEEK (EMPTY BOX FOR HANDWRITING) -->
+      <div class="log-box" style="height: 72mm; margin-bottom: 10px;">
+        <div class="log-box-title">Work done in current Week:</div>
+      </div>
+
+      <!-- WORK TO BE DONE IN NEXT WEEK (EMPTY BOX FOR HANDWRITING) -->
+      <div class="log-box" style="height: 48mm; margin-bottom: 10px;">
+        <div class="log-box-title">Work to be done in next Week :</div>
+      </div>
+
+      <!-- SUPERVISOR COMMENTS (EMPTY BOX FOR HANDWRITING) -->
+      <div class="log-box" style="height: 40mm; margin-bottom: 6px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="log-box-title">Supervisor Comments:</div>
+        <div style="font-size: 9.5pt; text-align: right; font-weight: bold; padding-bottom: 2px;">
+          Supervisor Signature/Date: ....................................................
+        </div>
+      </div>
+    </div>
+
+    <div class="college-footer">
+      <span>Department of Computer Applications</span>
+      <span>Minor Project 2026-27</span>
+    </div>
+  </div>
+"""
+    html_content += page_html
+
+html_content += """
+  <!-- ========================================== -->
+  <!-- PAGE 21: FINAL SUPERVISOR EVALUATION SHEET -->
+  <!-- ========================================== -->
+  <div class="page-sheet">
+    <div class="college-header">
+      <div class="header-text">
+        <div class="inst-name">PSIT-College of Higher Education</div>
+        <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
+      </div>
+      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+    </div>
+
+    <div class="page-body">
+      <h3 class="section-heading" style="text-decoration: underline; margin-top: 15px; margin-bottom: 20px;">(To be filled by Project Supervisor)</h3>
+
+      <div style="font-size: 11pt; line-height: 1.8; margin-bottom: 20px;">
+        <div><strong>ProjectTitle:</strong> AlgoLenz: Interactive Data Structures, Pathfinding & Sorting Visualization Platform</div>
+        <div><strong>Project Id.:</strong> BCA-2026-MP-042</div>
+      </div>
+
+      <table class="data-table" style="font-size: 10.5pt; margin-bottom: 25px;">
+        <tr>
+          <th style="width: 10%;">S.No</th>
+          <th style="width: 25%;">Roll No</th>
+          <th style="width: 40%;">Name of the student</th>
+          <th style="width: 25%;">Grade by Supervisor</th>
+        </tr>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td style="text-align: center;">24116002322</td>
+          <td>Naitik</td>
+          <td style="height: 32px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">2</td>
+          <td style="text-align: center;">24116002274</td>
+          <td>Kashish Gupta</td>
+          <td style="height: 32px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">3</td>
+          <td style="text-align: center;">24116002324</td>
+          <td>Naitik Mishra</td>
+          <td style="height: 32px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">4</td>
+          <td style="text-align: center;">24116002277</td>
+          <td>Khushboo Rajpoot</td>
+          <td style="height: 32px;"></td>
+        </tr>
+      </table>
+
+      <div style="font-size: 11pt; line-height: 1.8; margin-bottom: 25px;">
+        <div><strong>Type of the project (Software/ Software and Hardware/ Simulation or Modelling):</strong> __________________________________________________</div>
+      </div>
+
+      <div style="font-size: 11pt; line-height: 1.6; margin-bottom: 30px;">
+        <div style="font-weight: bold; margin-bottom: 6px;">Any other Remark:</div>
+        <div style="border: 1.5px solid #000; height: 35mm; background: #fff; padding: 10px;"></div>
+      </div>
+
+      <div style="margin-top: 25px; font-size: 11pt; line-height: 1.8;">
+        <div><strong>Supervisor Name and Signature:</strong></div>
+        <div style="margin-top: 15px;">
+          Dr. Amit Yadav (Professor)<br>
+          Signature: __________________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date: ____________________
+        </div>
+      </div>
+
+      <div style="margin-top: 30px; font-size: 10pt; line-height: 1.5; border-top: 1px dashed #666; padding-top: 10px;">
+        <strong>Grading Scheme:</strong><br>
+        <strong>A+:</strong> Outstanding &nbsp;&nbsp;|&nbsp;&nbsp;
+        <strong>A:</strong> Excellent &nbsp;&nbsp;|&nbsp;&nbsp;
+        <strong>B+:</strong> Good &nbsp;&nbsp;|&nbsp;&nbsp;
+        <strong>B:</strong> Average &nbsp;&nbsp;|&nbsp;&nbsp;
+        <strong>C:</strong> Not Satisfactory
+      </div>
+    </div>
+
+    <div class="college-footer">
+      <span>Department of Computer Applications</span>
+      <span>Minor Project 2026-27</span>
+    </div>
+  </div>
+
+</body>
+</html>
+"""
+
+with open("project_diary.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("Saved project_diary.html successfully!")

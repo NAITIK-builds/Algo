@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useVisualizer } from '../../context/VisualizerContext';
 import { runDijkstra } from '../../algorithms/dijkstra';
 import { runAStar } from '../../algorithms/aStar';
@@ -24,12 +24,24 @@ export const GridVisualizer: React.FC = () => {
     activeTool,
     speed,
     isRunning, setIsRunning,
-    setIsPaused,
+    isPaused, setIsPaused,
     setStats,
     startPos, setStartPos,
     targetPos, setTargetPos,
     clearPathOnly, resetGrid, clearWallsOnly
   } = useVisualizer();
+
+  const isPausedRef = useRef(isPaused);
+  const speedRef = useRef(speed);
+  const cancelRef = useRef(false);
+
+  useEffect(() => {
+    isPausedRef.current = isPaused;
+  }, [isPaused]);
+
+  useEffect(() => {
+    speedRef.current = speed;
+  }, [speed]);
 
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [hoverInfo, setHoverInfo] = useState<{
@@ -194,9 +206,19 @@ export const GridVisualizer: React.FC = () => {
   };
 
   const executeAlgorithm = async () => {
+    if (isRunning) {
+      if (isPaused) {
+        setIsPaused(false);
+        isPausedRef.current = false;
+      }
+      return;
+    }
+
     clearPathOnly();
     setIsRunning(true);
     setIsPaused(false);
+    isPausedRef.current = false;
+    cancelRef.current = false;
 
     let steps: any[] = [];
     if (algorithm === 'dijkstra') {
@@ -214,8 +236,15 @@ export const GridVisualizer: React.FC = () => {
     const startTime = performance.now();
 
     for (let i = 0; i < steps.length; i++) {
+      if (cancelRef.current) break;
+
+      while (isPausedRef.current && !cancelRef.current) {
+        await new Promise(resolve => setTimeout(resolve, 60));
+      }
+      if (cancelRef.current) break;
+
       const step = steps[i];
-      await new Promise(resolve => setTimeout(resolve, speed));
+      await new Promise(resolve => setTimeout(resolve, speedRef.current));
 
       setGrid(prevGrid => {
         const nextGrid = prevGrid.map(r => r.map(n => ({ ...n })));
@@ -254,6 +283,8 @@ export const GridVisualizer: React.FC = () => {
     }
 
     setIsRunning(false);
+    setIsPaused(false);
+    isPausedRef.current = false;
   };
 
   return (
@@ -261,9 +292,24 @@ export const GridVisualizer: React.FC = () => {
       {/* Playback Dock */}
       <PlaybackBar
         onRun={executeAlgorithm}
-        onPause={() => setIsPaused(true)}
-        onReset={resetGrid}
-        onClearPath={clearPathOnly}
+        onPause={() => {
+          setIsPaused(true);
+          isPausedRef.current = true;
+        }}
+        onReset={() => {
+          cancelRef.current = true;
+          setIsRunning(false);
+          setIsPaused(false);
+          isPausedRef.current = false;
+          resetGrid();
+        }}
+        onClearPath={() => {
+          cancelRef.current = true;
+          setIsRunning(false);
+          setIsPaused(false);
+          isPausedRef.current = false;
+          clearPathOnly();
+        }}
         onClearWalls={clearWallsOnly}
       />
 

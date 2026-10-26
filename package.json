@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "pdf": "node scripts/generate_pdf.cjs"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
