@@ -48,6 +48,10 @@ export interface SortingStep {
   comparisons: number;
   swaps: number;
   lineCode?: string;
+  activeLine?: number;
+  pointers?: Record<string, number>;
+  description?: string;
+  subArrayRange?: [number, number];
 }
 
 export interface CityHubNode {
@@ -56,6 +60,8 @@ export interface CityHubNode {
   lat: number;
   lng: number;
   type: 'hub' | 'darkstore' | 'customer' | 'restaurant';
+  address?: string;
+  landmark?: string;
 }
 
 export interface CityEdge {
@@ -63,6 +69,10 @@ export interface CityEdge {
   to: string;
   weight: number;
   traffic: 'low' | 'medium' | 'high';
+  roadName?: string;
+  roadType?: 'highway' | 'expressway' | 'arterial' | 'metro_corridor' | 'city_avenue';
+  speedLimit?: number;
+  geometry?: [number, number][];
 }
 
 export interface StopOrder {

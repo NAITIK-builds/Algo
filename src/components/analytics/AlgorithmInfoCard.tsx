@@ -15,7 +15,7 @@ interface AlgoSpec {
 
 export const AlgorithmInfoCard: React.FC = () => {
   const { algorithm } = useVisualizer();
-  const [isExpanded, setIsExpanded] = useState<boolean>(true);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<'pseudocode' | 'code'>('pseudocode');
   const [copied, setCopied] = useState<boolean>(false);
 
@@ -379,101 +379,89 @@ function solveTSPHeldKarp(distMatrix) {
   };
 
   return (
-    <div className="glass-panel p-4 rounded-2xl border border-slate-200 dark:border-white/10 shadow-card-light dark:shadow-card-dark flex flex-col gap-3 transition-all">
-      {/* Title */}
-      <div className="flex justify-between items-center pb-2.5 border-b border-slate-200 dark:border-white/10">
+    <div className="ui-panel p-4 rounded-xl flex flex-col gap-3 transition-colors">
+      <div className="flex justify-between items-center pb-2.5 border-b border-slate-200 dark:border-dark-800">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-brand-indigo/10 text-brand-indigo dark:text-brand-indigoLight border border-brand-indigo/20">
-            <BookOpen className="w-4 h-4" />
-          </div>
-          <h3 className="font-mono text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider">
-            ALGORITHM SPECIFICATION
+          <BookOpen className="w-4 h-4 text-brand-primary" />
+          <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider">
+            Algorithm Specification
           </h3>
         </div>
-        <span className="flex items-center gap-1 text-[10px] font-mono text-brand-emerald font-semibold bg-brand-emerald/10 px-2 py-0.5 rounded-full border border-brand-emerald/20">
-          <CheckCircle className="w-3 h-3" /> VERIFIED
+        <span className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-brand-primary/10 text-brand-primary dark:text-brand-primaryLight border border-brand-primary/20 font-semibold">
+          {currentInfo.name}
         </span>
       </div>
 
-      <div className="space-y-3 font-mono text-xs">
+      <div className="space-y-3 text-xs">
         <div>
-          <span className="text-slate-500 dark:text-slate-400 text-[10px] font-bold block">NAME</span>
-          <strong className="text-slate-900 dark:text-white text-sm font-sans font-bold">{currentInfo.name}</strong>
-          <p className="text-[11px] font-sans text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-[12px]">
             {currentInfo.desc}
           </p>
         </div>
 
         {/* Complexity Cards */}
-        <div className="grid grid-cols-2 gap-2 pt-1 border-t border-slate-200 dark:border-white/10">
-          <div className="bg-white/90 dark:bg-dark-900/80 p-2.5 rounded-xl border border-slate-200 dark:border-white/10 shadow-sm">
-            <span className="text-brand-cyan text-[10px] font-bold block">TIME COMPLEXITY</span>
-            <strong className="text-slate-900 dark:text-white text-xs">{currentInfo.timeComp}</strong>
+        <div className="grid grid-cols-2 gap-2 pt-1 border-t border-slate-200 dark:border-dark-800">
+          <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-dark-800">
+            <span className="text-[10px] text-slate-500 uppercase font-semibold block">Time Complexity</span>
+            <strong className="text-slate-900 dark:text-white font-mono text-xs block mt-0.5">{currentInfo.timeComp}</strong>
           </div>
-          <div className="bg-white/90 dark:bg-dark-900/80 p-2.5 rounded-xl border border-slate-200 dark:border-white/10 shadow-sm">
-            <span className="text-brand-indigo dark:text-brand-indigoLight text-[10px] font-bold block">SPACE COMPLEXITY</span>
-            <strong className="text-slate-900 dark:text-white text-xs">{currentInfo.spaceComp}</strong>
+          <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-dark-800">
+            <span className="text-[10px] text-slate-500 uppercase font-semibold block">Space Complexity</span>
+            <strong className="text-slate-900 dark:text-white font-mono text-xs block mt-0.5">{currentInfo.spaceComp}</strong>
           </div>
         </div>
 
-        <div className="pt-2 border-t border-slate-200 dark:border-white/10">
-          <span className="text-brand-amber text-[10px] font-bold block mb-0.5">OPTIMALITY GUARANTEE</span>
-          <span className="text-slate-700 dark:text-slate-200 font-medium text-[11px]">{currentInfo.guarantee}</span>
-        </div>
-
-        <div className="pt-2 border-t border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/5 p-2.5 rounded-xl border border-slate-200 dark:border-white/10">
-          <span className="text-brand-cyan text-[10px] font-bold block mb-1 flex items-center gap-1">
-            <Sparkles className="w-3 h-3" /> REAL-WORLD LOGISTICS APPLICATION
-          </span>
-          <p className="text-slate-700 dark:text-slate-300 font-sans text-[11px] leading-relaxed">
+        <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-dark-800">
+          <span className="text-[10px] text-slate-500 uppercase font-semibold block mb-0.5">Application Context</span>
+          <p className="text-slate-700 dark:text-slate-300 text-[11px] leading-relaxed">
             {currentInfo.useCase}
           </p>
         </div>
 
-        {/* INTERACTIVE PSEUDOCODE & SOURCE CODE VIEWER */}
-        <div className="pt-2 border-t border-slate-200 dark:border-white/10">
+        {/* Code & Pseudocode Drawer */}
+        <div className="pt-2 border-t border-slate-200 dark:border-dark-800">
           <div className="flex items-center justify-between mb-2">
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="flex items-center gap-1.5 text-xs font-bold text-brand-indigo dark:text-brand-indigoLight hover:underline cursor-pointer"
+              className="flex items-center gap-1.5 text-xs font-semibold text-brand-primary hover:text-brand-primaryHover cursor-pointer"
             >
               <Code className="w-3.5 h-3.5" />
-              <span>{isExpanded ? 'HIDE PSEUDOCODE & CODE' : 'SHOW PSEUDOCODE & CODE'}</span>
+              <span>{isExpanded ? 'Hide Implementation' : 'View Implementation & Code'}</span>
               {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
             </button>
 
             {isExpanded && (
-              <div className="flex items-center gap-1 bg-slate-200/80 dark:bg-dark-900 p-0.5 rounded-lg border border-slate-300 dark:border-white/10 text-[10px]">
+              <div className="flex items-center gap-1 bg-slate-100 dark:bg-dark-850 p-0.5 rounded-lg border border-slate-200 dark:border-dark-750 text-[11px]">
                 <button
                   onClick={() => setActiveTab('pseudocode')}
-                  className={`px-2 py-0.5 rounded font-bold transition-all ${
+                  className={`px-2 py-0.5 rounded-md font-medium transition-colors ${
                     activeTab === 'pseudocode'
-                      ? 'bg-brand-cyan text-dark-950 shadow-sm'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                      ? 'bg-white dark:bg-dark-900 text-slate-900 dark:text-white shadow-subtle'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
                   }`}
                 >
                   Pseudocode
                 </button>
                 <button
                   onClick={() => setActiveTab('code')}
-                  className={`px-2 py-0.5 rounded font-bold transition-all ${
+                  className={`px-2 py-0.5 rounded-md font-medium transition-colors ${
                     activeTab === 'code'
-                      ? 'bg-brand-cyan text-dark-950 shadow-sm'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                      ? 'bg-white dark:bg-dark-900 text-slate-900 dark:text-white shadow-subtle'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
                   }`}
                 >
-                  Clean Code
+                  TypeScript
                 </button>
               </div>
             )}
           </div>
 
           {isExpanded && (
-            <div className="relative bg-slate-900 text-slate-100 rounded-xl p-3 font-mono text-[11px] border border-slate-700 dark:border-white/15 overflow-x-auto shadow-inner">
+            <div className="relative bg-slate-900 dark:bg-black text-slate-200 rounded-lg p-3.5 font-mono text-[11px] border border-slate-800 max-h-56 overflow-y-auto overflow-x-auto shadow-inner">
               <button
                 onClick={handleCopy}
                 title="Copy to clipboard"
-                className="absolute top-2.5 right-2.5 p-1 rounded-md bg-white/10 hover:bg-white/20 text-slate-300 transition-colors flex items-center gap-1 text-[10px]"
+                className="absolute top-2.5 right-2.5 px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-slate-300 transition-colors flex items-center gap-1 text-[10px] cursor-pointer"
               >
                 {copied ? <Check className="w-3 h-3 text-brand-emerald" /> : <Copy className="w-3 h-3" />}
                 <span>{copied ? 'Copied' : 'Copy'}</span>
@@ -481,21 +469,21 @@ function solveTSPHeldKarp(distMatrix) {
 
               {activeTab === 'pseudocode' ? (
                 <div className="space-y-0.5">
-                  <div className="text-brand-amber font-bold mb-2 pb-1 border-b border-white/10 flex items-center gap-1">
-                    <Code className="w-3.5 h-3.5" /> {currentInfo.name.toUpperCase()} (PSEUDOCODE)
+                  <div className="text-brand-amber font-semibold mb-2 pb-1 border-b border-white/10 text-xs">
+                    {currentInfo.name} — Pseudocode Specification
                   </div>
                   {currentInfo.pseudocode.map((line, idx) => (
-                    <div key={idx} className="leading-relaxed whitespace-pre font-mono text-slate-200">
+                    <div key={idx} className="leading-relaxed whitespace-pre text-slate-300">
                       {line}
                     </div>
                   ))}
                 </div>
               ) : (
                 <div>
-                  <div className="text-brand-cyan font-bold mb-2 pb-1 border-b border-white/10 flex items-center gap-1">
-                    <Code className="w-3.5 h-3.5" /> {currentInfo.name.toUpperCase()} (PRODUCTION JAVASCRIPT)
+                  <div className="text-brand-primaryLight font-semibold mb-2 pb-1 border-b border-white/10 text-xs">
+                    {currentInfo.name} — TypeScript Reference
                   </div>
-                  <pre className="whitespace-pre font-mono text-[10.5px] leading-relaxed text-slate-200">
+                  <pre className="whitespace-pre text-[10.5px] leading-relaxed text-slate-300">
                     {currentInfo.cleanCode}
                   </pre>
                 </div>

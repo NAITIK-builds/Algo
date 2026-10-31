@@ -1,7 +1,7 @@
 import { GridNode, NodeType, MazeType } from '../types/routing';
 
-export const DEFAULT_ROWS = 20;
-export const DEFAULT_COLS = 42;
+export const DEFAULT_ROWS = 18;
+export const DEFAULT_COLS = 36;
 
 export function createInitialGrid(rows: number = DEFAULT_ROWS, cols: number = DEFAULT_COLS): GridNode[][] {
   const grid: GridNode[][] = [];

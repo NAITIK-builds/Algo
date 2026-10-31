@@ -1,84 +1,96 @@
 import React from 'react';
-import { Zap, CheckCircle } from 'lucide-react';
+import { Route, CheckCircle2, GraduationCap, Code2, Users } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-slate-100 dark:bg-dark-950 border-t border-slate-200 dark:border-white/10 mt-auto pt-10 pb-6 px-4 sm:px-6 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-200 dark:border-white/10">
-        {/* Brand Col */}
+    <footer className="w-full bg-white dark:bg-dark-950 border-t border-slate-200 dark:border-dark-800 mt-auto pt-10 pb-6 px-4 sm:px-6 transition-colors">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-200 dark:border-dark-800">
+        
+        {/* Brand Column */}
         <div className="space-y-3">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-brand-indigo to-brand-cyan flex items-center justify-center text-dark-950 font-bold">
-              <Zap className="w-4 h-4 fill-dark-950 text-dark-950" />
+            <div className="w-7 h-7 rounded-lg bg-brand-primary flex items-center justify-center text-white">
+              <Route className="w-4 h-4 text-white" />
             </div>
-            <span className="font-display font-bold text-base text-slate-900 dark:text-white tracking-tight">
-              AlgoLenz <span className="text-brand-cyan font-mono text-xs">// ROUTEVIZ</span>
+            <span className="font-semibold text-base text-slate-900 dark:text-white tracking-tight">
+              AlgoLenz
             </span>
           </div>
-          <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
-            High-performance algorithmic computation and visualization platform engineered for last-mile logistics, multi-stop routing, city graph navigation, and interactive DSA learning.
+          <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            Algorithmic computation and interactive visualizer platform engineered for route optimization, multi-stop logistics, city road networks, and data structure education.
           </p>
-          <div className="flex items-center gap-2 text-[11px] font-mono text-slate-500 dark:text-slate-400">
-            <span className="inline-block w-2 h-2 rounded-full bg-brand-emerald"></span>
-            <span>BUILD: V5.0 HIGH PERFORMANCE ENGINE</span>
+          <div className="flex items-center gap-2 text-[11px] text-slate-500 font-mono">
+            <span className="w-2 h-2 rounded-full bg-brand-emerald" />
+            <span>Interactive Algorithmic Engine</span>
           </div>
         </div>
 
         {/* Project Team */}
         <div className="space-y-2.5">
-          <h4 className="font-mono text-xs font-bold text-brand-cyan uppercase tracking-wider">PROJECT TEAM</h4>
-          <ul className="text-xs font-mono space-y-1.5 text-slate-700 dark:text-slate-300">
-            <li className="flex items-center gap-1.5">
-              <span className="text-brand-cyan">▹</span>
-              <span><strong className="text-slate-900 dark:text-white">Naitik</strong> (24116002322)</span>
+          <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
+            <Users className="w-3.5 h-3.5 text-brand-primary" />
+            Project Team
+          </h4>
+          <ul className="text-xs space-y-1.5 text-slate-600 dark:text-slate-400 font-mono">
+            <li className="flex justify-between items-center py-0.5">
+              <span className="text-slate-800 dark:text-slate-200 font-sans font-medium">Naitik</span>
+              <span className="text-[11px] text-slate-400">24116002322</span>
             </li>
-            <li className="flex items-center gap-1.5">
-              <span className="text-brand-cyan">▹</span>
-              <span><strong className="text-slate-900 dark:text-white">Kashish Gupta</strong> (24116002274)</span>
+            <li className="flex justify-between items-center py-0.5">
+              <span className="text-slate-800 dark:text-slate-200 font-sans font-medium">Kashish Gupta</span>
+              <span className="text-[11px] text-slate-400">24116002274</span>
             </li>
-            <li className="flex items-center gap-1.5">
-              <span className="text-brand-cyan">▹</span>
-              <span><strong className="text-slate-900 dark:text-white">Naitik Mishra</strong> (24116002324)</span>
+            <li className="flex justify-between items-center py-0.5">
+              <span className="text-slate-800 dark:text-slate-200 font-sans font-medium">Naitik Mishra</span>
+              <span className="text-[11px] text-slate-400">24116002324</span>
             </li>
-            <li className="flex items-center gap-1.5">
-              <span className="text-brand-cyan">▹</span>
-              <span><strong className="text-slate-900 dark:text-white">Khushboo Rajpoot</strong> (24116002277)</span>
+            <li className="flex justify-between items-center py-0.5">
+              <span className="text-slate-800 dark:text-slate-200 font-sans font-medium">Khushboo Rajpoot</span>
+              <span className="text-[11px] text-slate-400">24116002277</span>
             </li>
           </ul>
         </div>
 
         {/* Algorithm Suite */}
         <div className="space-y-2.5">
-          <h4 className="font-mono text-xs font-bold text-brand-indigo dark:text-brand-indigoLight uppercase tracking-wider">SUPPORTED ALGORITHMS</h4>
-          <ul className="text-xs font-mono space-y-1.5 text-slate-600 dark:text-slate-400">
-            <li className="hover:text-slate-900 dark:hover:text-slate-200 transition-colors">• Dijkstra Shortest Path — O(E log V)</li>
-            <li className="hover:text-slate-900 dark:hover:text-slate-200 transition-colors">• A* Heuristic Search — O(E)</li>
-            <li className="hover:text-slate-900 dark:hover:text-slate-200 transition-colors">• Held-Karp Exact DP (TSP) — O(2ⁿ · n²)</li>
-            <li className="hover:text-slate-900 dark:hover:text-slate-200 transition-colors">• Bellman-Ford Negative Cycle — O(V · E)</li>
-            <li className="hover:text-slate-900 dark:hover:text-slate-200 transition-colors">• Quick, Merge & Heap Sort — O(N log N)</li>
+          <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
+            <Code2 className="w-3.5 h-3.5 text-brand-primary" />
+            Supported Algorithms
+          </h4>
+          <ul className="text-xs space-y-1 text-slate-500 dark:text-slate-400">
+            <li>Dijkstra Shortest Path — <span className="font-mono text-[11px]">O(E log V)</span></li>
+            <li>A* Heuristic Search — <span className="font-mono text-[11px]">O(E)</span></li>
+            <li>Held-Karp Exact DP (TSP) — <span className="font-mono text-[11px]">O(2ⁿ · n²)</span></li>
+            <li>Bellman-Ford — <span className="font-mono text-[11px]">O(V · E)</span></li>
+            <li>Quick, Merge & Heap Sort — <span className="font-mono text-[11px]">O(N log N)</span></li>
           </ul>
         </div>
 
-        {/* Technical Architecture Tokens */}
+        {/* Academic Affiliation */}
         <div className="space-y-2.5">
-          <h4 className="font-mono text-xs font-bold text-brand-emerald uppercase tracking-wider">CORE TECH STACK</h4>
-          <div className="flex flex-wrap gap-1.5 text-[11px] font-mono">
-            <span className="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-300">React 18 + TS</span>
-            <span className="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-brand-cyan font-bold">TailwindCSS 3.4</span>
-            <span className="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-brand-indigo dark:text-brand-indigoLight">Leaflet GIS</span>
-            <span className="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-brand-emerald font-bold">Web Audio API</span>
-            <span className="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-brand-amber font-bold">Vite Build</span>
+          <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
+            <GraduationCap className="w-3.5 h-3.5 text-brand-primary" />
+            Institution & Department
+          </h4>
+          <div className="text-xs text-slate-600 dark:text-slate-400 space-y-1">
+            <div className="font-semibold text-slate-900 dark:text-white">
+              PSIT College of Higher Education
+            </div>
+            <div>Affiliated to C.S.J.M. University, Kanpur</div>
+            <div className="text-[11px] text-brand-primary font-medium pt-1">
+              BCA-5005 Major Project Submission
+            </div>
           </div>
         </div>
+
       </div>
 
       {/* Bottom Copyright Strip */}
-      <div className="max-w-7xl mx-auto pt-6 flex flex-wrap justify-between items-center text-xs font-mono text-slate-500 dark:text-slate-500 gap-2">
-        <span>© 2026 ALGOLENZ // ROUTEVIZ STUDIO. ALL RIGHTS RESERVED.</span>
-        <div className="flex items-center gap-4">
-          <span className="flex items-center gap-1 text-slate-600 dark:text-slate-400">
-            <CheckCircle className="w-3.5 h-3.5 text-brand-emerald" /> 60FPS SMOOTH GRAPH FLOW
-          </span>
+      <div className="max-w-7xl mx-auto pt-6 flex flex-wrap justify-between items-center text-xs text-slate-500 gap-3">
+        <span>© 2026 AlgoLenz. PSIT Kanpur BCA Final Year Project.</span>
+        <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
+          <CheckCircle2 className="w-3.5 h-3.5 text-brand-emerald" />
+          <span>Interactive Algorithmic Computation Engine</span>
         </div>
       </div>
     </footer>
