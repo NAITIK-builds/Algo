@@ -3,6 +3,7 @@
 % --- Packages ---
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
+\graphicspath{{assets/}{./}}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
@@ -61,11 +62,11 @@
 \setcounter{page}{0}
 
 \begin{center}
-    \IfFileExists{CSJMU_logo.jpg}{
-        \includegraphics[width=2.4cm]{CSJMU_logo.jpg}
+    \IfFileExists{assets/CSJMU_logo.jpg}{
+        \includegraphics[width=2.4cm]{assets/CSJMU_logo.jpg}
     }{
-        \IfFileExists{csjmu_logo.png}{
-            \includegraphics[width=2.4cm]{csjmu_logo.png}
+        \IfFileExists{CSJMU_logo.jpg}{
+            \includegraphics[width=2.4cm]{CSJMU_logo.jpg}
         }{
             \vspace*{0.2cm}
             \rule{2.4cm}{2.4cm} \par \small{(CSJMU Logo)}
@@ -92,11 +93,11 @@
     {\large \textbf{\supervisorName}} \\[0.1cm]
     {\large \textbf{\supervisorTitle}} \\[0.4cm]
 
-    \IfFileExists{psit_logo.jpg}{
-        \includegraphics[width=3.0cm]{psit_logo.jpg}
+    \IfFileExists{assets/psit_logo.jpg}{
+        \includegraphics[width=3.0cm]{assets/psit_logo.jpg}
     }{
-        \IfFileExists{psit_logo.png}{
-            \includegraphics[width=3.0cm]{psit_logo.png}
+        \IfFileExists{psit_logo.jpg}{
+            \includegraphics[width=3.0cm]{psit_logo.jpg}
         }{
             \rule{3.0cm}{1.2cm} \par \small{(PSIT Logo)}
         }
