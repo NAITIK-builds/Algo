@@ -8,68 +8,71 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Linear & Vercel inspired dark surfaces
         dark: {
-          950: '#07090E',
-          900: '#0D1117',
-          850: '#131822',
-          800: '#1A2230',
-          700: '#263346',
-          600: '#384960',
+          950: '#0B0F19', // Canvas background
+          900: '#111827', // Card & Panel surface
+          850: '#161F33', // Elevated hover surface
+          800: '#1F2937', // Strong borders
+          750: '#283548', // Subtle borders
+          700: '#374151', // Accent borders
+          600: '#4B5563', // Muted text
         },
+        // Refined, authoritative Brand Palette (Cobalt Indigo as Main Brand Color)
         brand: {
-          cyan: '#06B6D4',
-          cyanLight: '#67E8F9',
-          emerald: '#10B981',
-          emeraldLight: '#6EE7B7',
-          rose: '#F43F5E',
-          roseLight: '#FDA4AF',
-          amber: '#F59E0B',
-          amberLight: '#FCD34D',
-          indigo: '#6366F1',
-          indigoLight: '#A5B4FC',
-          violet: '#8B5CF6',
-          violetLight: '#C4B5FD',
+          primary: '#4F46E5', // Indigo-600 (Main Layout Color)
+          primaryHover: '#4338CA',
+          primaryLight: '#6366F1',
+          primaryMuted: 'rgba(79, 70, 229, 0.12)',
+          accent: '#0EA5E9', // Sky Blue (Data & Frontier)
+          accentLight: '#38BDF8',
+          emerald: '#10B981', // Mint Green (Success & Path)
+          emeraldLight: '#34D399',
+          rose: '#EF4444', // Red/Coral (Target & Barrier)
+          roseLight: '#F87171',
+          amber: '#F59E0B', // Amber (Traffic & Swaps)
+          amberLight: '#FBBF24',
+          indigo: '#4F46E5',
+          indigoLight: '#818CF8',
+          teal: '#0D9488',
         },
         slate: {
-          850: '#151D2A',
-          950: '#090D15',
+          850: '#141D2E',
+          950: '#080C14',
         }
       },
       fontFamily: {
-        sans: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
-        display: ['Outfit', 'Space Grotesk', 'sans-serif'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'Menlo', 'monospace'],
+        display: ['Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        'glow-cyan': '0 0 20px -3px rgba(6, 182, 212, 0.45)',
-        'glow-emerald': '0 0 20px -3px rgba(16, 185, 129, 0.45)',
-        'glow-rose': '0 0 20px -3px rgba(244, 63, 94, 0.45)',
-        'glow-amber': '0 0 20px -3px rgba(245, 158, 11, 0.45)',
-        'glow-indigo': '0 0 20px -3px rgba(99, 102, 241, 0.45)',
-        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
-        'card-dark': '0 4px 24px -1px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.07)',
-        'card-light': '0 4px 20px -2px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05)',
+        'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        'card': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
+        'elevated': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+        'dropdown': '0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -4px rgba(0, 0, 0, 0.1)',
+        'primary': '0 4px 14px 0 rgba(79, 70, 229, 0.35)',
+        'card-dark': '0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.08)',
+        'card-light': '0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.8)',
       },
       animation: {
-        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'ripple': 'ripple 0.6s cubic-bezier(0, 0.2, 0.8, 1) forwards',
-        'glow-flow': 'glowFlow 2s linear infinite',
-        'shimmer': 'shimmer 2.5s linear infinite',
+        'fade-in': 'fadeIn 0.2s ease-out forwards',
+        'scale-in': 'scaleIn 0.2s ease-out forwards',
+        'pulse-subtle': 'pulseSubtle 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
-        ripple: {
-          '0%': { transform: 'scale(0.8)', opacity: '0.4' },
-          '50%': { transform: 'scale(1.15)', opacity: '0.9' },
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(4px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        scaleIn: {
+          '0%': { transform: 'scale(0.97)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
-        glowFlow: {
-          '0%, 100%': { filter: 'drop-shadow(0 0 8px rgba(245, 158, 11, 0.8))' },
-          '50%': { filter: 'drop-shadow(0 0 18px rgba(245, 158, 11, 1))' },
+        pulseSubtle: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.6' },
         },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
-        }
       }
     },
   },

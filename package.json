@@ -7,7 +7,14 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "pdf": "node scripts/generate_pdf.cjs"
+    "pdf": "node scripts/generate_pdf.cjs",
+    "pdf:synopsis": "node scripts/generate_pdf.cjs",
+    "pdf:report": "node scripts/generate_report_pdf.cjs",
+    "report:html": "python scripts/build_academic_50page_report.py",
+    "report:docx": "python scripts/build_50page_report.py",
+    "diary:html": "python scripts/generate_diary_html.py",
+    "diary:docx": "python scripts/generate_diary_docx.py",
+    "frontpage": "python scripts/generate_frontpage.py"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

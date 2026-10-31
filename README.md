@@ -134,14 +134,12 @@ Generates optimized static bundle in `dist/`.
 
 ---
 
-## 📂 Project Architecture
+## 📂 Project Architecture & Organization
 
 ```
 ALGO/
-├── ALGORITHM_CODE_AND_PSEUDOCODE.md  # Complete 13-algorithm study guide & pseudocode
-├── PROJECT_DIARY_BCA5005.md          # Official BCA 5005 college progress diary
-├── public/                           # Logos and static assets
-├── src/
+├── public/                           # Static web assets (favicon.svg)
+├── src/                              # AlgoLenz React + TypeScript source code
 │   ├── algorithms/                   # Pure mathematical algorithm engines
 │   │   ├── dijkstra.ts               # Dijkstra's shortest path
 │   │   ├── aStar.ts                  # A* heuristic Manhattan search
@@ -150,30 +148,60 @@ ALGO/
 │   │   ├── bellmanFord.ts            # Bellman-Ford negative edge solver
 │   │   ├── tsp.ts                    # Held-Karp Bitmask DP & Nearest Neighbor
 │   │   └── sorting.ts                # 6 sorting algorithms emitting step events
-│   ├── components/
-│   │   ├── analytics/
-│   │   │   ├── AlgorithmInfoCard.tsx # Pseudocode drawer & complexity cards
-│   │   │   └── StatsPanel.tsx        # Real-time node & time telemetry
-│   │   ├── controls/
-│   │   │   ├── ControlPanel.tsx      # Tool selection (Walls, Traffic, Eraser)
-│   │   │   └── PlaybackBar.tsx       # Run, Pause, Reset, Slow-mo sliders
-│   │   ├── layout/                   # Header, Navigation, Footer
-│   │   └── visualizer/
-│   │       ├── GridVisualizer.tsx    # 2D Grid with traffic and obstacle painting
-│   │       ├── CityMapView.tsx       # Leaflet GPS map routing
-│   │       ├── MultiStopView.tsx     # Multi-stop batch delivery TSP
-│   │       ├── ComparisonView.tsx    # Side-by-side algorithm race arena
-│   │       └── SortingView.tsx       # 3D Cards, Sound Bars & step explainer
-│   ├── context/
-│   │   └── VisualizerContext.tsx     # Centralized React state management
-│   ├── utils/
-│   │   ├── SoundFX.ts                # Web Audio API sound generator
-│   │   ├── cityData.ts               # Geospatial coordinates for city nodes
-│   │   └── gridGenerator.ts          # Maze generators (Spiral, Roadblock, Rush Hour)
-│   ├── App.tsx                       # Main shell with tab switcher
+│   ├── components/                   # Modular React UI components
+│   │   ├── analytics/                # Telemetry panels & algorithm info cards
+│   │   ├── controls/                 # Tool selection, speed slider, playback controls
+│   │   ├── layout/                   # Header navbar & footer
+│   │   └── visualizer/               # 5 visualizer view modes (Grid, Map, TSP, etc.)
+│   ├── context/                      # React state management (VisualizerContext.tsx)
+│   ├── types/                        # TypeScript types & interface declarations
+│   ├── utils/                        # Audio synthesizer (SoundFX), grid generator, city hubs
+│   ├── App.tsx                       # Root view shell & tab controller
 │   ├── index.css                     # Tailwind CSS & custom design system
-│   └── main.tsx                      # React root mount
-└── vite.config.ts                    # Vite build configuration
+│   └── main.tsx                      # Vite React root mount
+│
+├── docs/                             # BCA-5005 Academic Project Deliverables & Reports
+│   ├── README.md                     # Documentation index & compilation guide
+│   ├── project_report.pdf            # 50-Page Formal Minor Project Report (PDF)
+│   ├── project_report.docx           # Editable Word document format
+│   ├── project_report.html           # Interactive HTML report preview
+│   ├── project_diary.pdf             # 21-Page Progress Diary (PDF)
+│   ├── project_diary.docx            # Editable Word diary format
+│   ├── project_diary.html            # Progress diary HTML preview
+│   ├── PROJECT_DIARY_BCA5005.md      # Raw markdown diary transcript
+│   ├── front_page.pdf                # University assignment cover page (PDF)
+│   ├── front_page.docx               # Editable cover page format
+│   ├── front_page.html               # Cover page HTML preview
+│   ├── project_synopsis.pdf          # Official Project Synopsis (PDF)
+│   ├── project_synopsis.tex          # Project Synopsis LaTeX source
+│   ├── synopsis_preview.html         # Synopsis HTML compiler preview
+│   ├── ALGORITHM_CODE_AND_PSEUDOCODE.md # 13-algorithm proofs & pseudocode guide
+│   └── assets/                       # University crests & college logos (CSJMU & PSIT)
+│
+├── images/                           # Application screenshots & visual benchmarks
+│   ├── screenshot_grid.png           # 2D Grid pathfinding visualizer
+│   ├── screenshot_comparison.png     # Side-by-side comparison battle arena
+│   ├── screenshot_multistop.png      # TSP multi-stop delivery dispatcher
+│   ├── screenshot_citymap.png        # Real-world city map routing (Leaflet)
+│   └── screenshot_sorting.png        # Audio-visual sorting studio
+│
+├── scripts/                          # Automated build, PDF compilation & doc tools
+│   ├── README.md                     # Scripts guide & documentation
+│   ├── build_academic_50page_report.py # Generates 50-page HTML report
+│   ├── build_50page_report.py        # Generates 50-page Word (.docx) report
+│   ├── generate_diary_html.py        # Generates 21-page diary HTML
+│   ├── generate_diary_docx.py        # Generates 21-page diary DOCX
+│   ├── generate_frontpage.py         # Generates submission front page
+│   ├── generate_report_pdf.cjs       # Compiles report HTML to PDF
+│   ├── generate_pdf.cjs              # Compiles synopsis HTML to PDF
+│   ├── capture_screenshots.py        # Playwright automatic UI screenshot capture
+│   └── ...                           # Chapter content modules & test helpers
+│
+└── legacy/                           # Archived earlier prototypes
+    └── vanilla-prototype/            # Original vanilla JS & CSS single-page prototype
+        ├── README.md                 # Prototype notes
+        ├── script.js                 # DOM-based visualizer script
+        └── styles.css                # Swiss architectural stylesheet
 ```
 
 ---
