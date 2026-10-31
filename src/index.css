@@ -5,183 +5,426 @@
 html {
   background-color: #F8FAFC;
   color-scheme: light;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 html.dark {
-  background-color: #07090E;
+  background-color: #0B0F19;
   color-scheme: dark;
 }
 
 body {
   background-color: #F8FAFC;
   color: #0F172A;
-  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html.dark body {
-  background-color: #07090E;
-  color: #F1F5F9;
+  background-color: #0B0F19;
+  color: #F8FAFC;
 }
 
-/* Custom Scrollbars */
+/* Subtle, authentic grid pattern (Linear / GitHub style) */
+.bg-canvas-pattern {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+html.dark .bg-canvas-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Clean, modern scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(226, 232, 240, 0.6);
-}
-html.dark ::-webkit-scrollbar-track {
-  background: rgba(13, 17, 23, 0.75);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.6);
+  background: rgba(148, 163, 184, 0.4);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(6, 182, 212, 0.8);
+  background: rgba(100, 116, 139, 0.7);
 }
 html.dark ::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
-/* Glassmorphism Dynamic Adapters */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
+/* Professional card containers (Linear / Vercel style) */
+.ui-panel {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
 }
 
-html.dark .glass-panel {
-  background: rgba(19, 24, 34, 0.8);
+html.dark .ui-panel {
+  background: #111827;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
 }
 
-.glass-dropdown {
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(203, 213, 225, 0.8);
+.ui-panel-muted {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
 }
 
-html.dark .glass-dropdown {
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+html.dark .ui-panel-muted {
+  background: #0D121F;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Node Visited Ripple Animation */
+/* Node Visited Animation (Smooth, professional wave) */
 @keyframes nodeVisitedAnim {
   0% {
     transform: scale(0.3);
-    background-color: rgba(6, 182, 212, 0.9);
-    border-radius: 100%;
+    background-color: #6366F1;
+    border-radius: 50%;
   }
   50% {
-    background-color: rgba(99, 102, 241, 0.85);
+    background-color: #0EA5E9;
   }
   75% {
-    transform: scale(1.18);
-    background-color: rgba(139, 92, 246, 0.7);
+    transform: scale(1.1);
+    background-color: #0284C7;
   }
   100% {
     transform: scale(1);
-    background-color: rgba(79, 70, 229, 0.6);
-    border-radius: 0.375rem;
+    background-color: #38BDF8;
   }
 }
 
-.node-visited {
-  animation: nodeVisitedAnim 0.35s ease-out forwards;
+html.dark .node-visited {
+  animation: nodeVisitedAnimDark 0.35s ease-out forwards;
 }
 
-/* Node Frontier Pulse */
+@keyframes nodeVisitedAnimDark {
+  0% {
+    transform: scale(0.3);
+    background-color: #4338CA;
+    border-radius: 50%;
+  }
+  50% {
+    background-color: #0284C7;
+  }
+  75% {
+    transform: scale(1.08);
+    background-color: #0369A1;
+  }
+  100% {
+    transform: scale(1);
+    background-color: #0284C7;
+  }
+}
+
+/* Node Frontier Animation */
 @keyframes nodeFrontierAnim {
   0% {
     transform: scale(0.5);
-    background-color: rgba(14, 165, 233, 0.4);
-  }
-  50% {
-    transform: scale(1.12);
-    background-color: rgba(6, 182, 212, 0.8);
+    background-color: #F59E0B;
   }
   100% {
     transform: scale(1);
-    background-color: rgba(6, 182, 212, 0.35);
+    background-color: #FBBF24;
   }
 }
 
 .node-frontier {
-  animation: nodeFrontierAnim 0.3s ease-out forwards;
+  animation: nodeFrontierAnim 0.25s ease-out forwards;
 }
 
-/* Shortest Path Neon Beam Animation */
+/* Shortest Path Animation (Golden beam) */
 @keyframes nodePathAnim {
   0% {
-    transform: scale(0.6);
-    background-color: #FCD34D;
-    box-shadow: 0 0 25px #F59E0B;
+    transform: scale(0.4);
+    background-color: #F59E0B;
+    border-radius: 50%;
   }
   50% {
     transform: scale(1.15);
-    background-color: #F59E0B;
-    box-shadow: 0 0 30px #F59E0B, 0 0 45px #D97706;
+    background-color: #FBBF24;
   }
   100% {
     transform: scale(1);
-    background-color: #EAB308;
-    box-shadow: 0 0 15px rgba(234, 179, 8, 0.7);
+    background-color: #F59E0B;
   }
 }
 
 .node-path {
-  animation: nodePathAnim 0.4s ease-in-out forwards;
+  animation: nodePathAnim 0.3s ease-out forwards;
 }
 
-/* Leaflet Dark / Light Theme Overrides */
-.leaflet-container {
-  font-family: 'JetBrains Mono', monospace !important;
+/* Leaflet Map Overrides for Clean Dark Mode */
+.dark .leaflet-tile {
+  filter: brightness(0.7) invert(1) contrast(1.2) hue-rotate(200deg) saturate(0.3);
 }
 
-html.dark .leaflet-container {
-  background-color: #0d1117 !important;
+.dark .leaflet-container {
+  background: #0B0F19 !important;
 }
 
-html.dark .leaflet-tile {
-  filter: brightness(0.7) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+.leaflet-control-zoom a {
+  background-color: #111827 !important;
+  color: #F8FAFC !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-html:not(.dark) .leaflet-container {
-  background-color: #e2e8f0 !important;
+/* Animated Flowing Route Dash Line */
+@keyframes leafletDashFlow {
+  from {
+    stroke-dashoffset: 48;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
-html:not(.dark) .leaflet-tile {
-  filter: none;
+.leaflet-animated-route path {
+  stroke-dasharray: 12, 8;
+  animation: leafletDashFlow 1.4s linear infinite;
 }
 
-.leaflet-popup-content-wrapper, .leaflet-popup-tip {
-  background: rgba(255, 255, 255, 0.95) !important;
+/* Custom Leaflet Popup Styling */
+.leaflet-popup-content-wrapper {
+  background: #FFFFFF !important;
   color: #0F172A !important;
-  backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  border-radius: 0.75rem !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2) !important;
+  padding: 4px !important;
 }
 
-html.dark .leaflet-popup-content-wrapper, html.dark .leaflet-popup-tip {
-  background: rgba(19, 24, 34, 0.95) !important;
-  color: #F1F5F9 !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+.dark .leaflet-popup-content-wrapper {
+  background: #111827 !important;
+  color: #F8FAFC !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6) !important;
 }
 
-.leaflet-popup-content {
-  margin: 10px 14px !important;
-  line-height: 1.4 !important;
+.leaflet-popup-tip {
+  background: #FFFFFF !important;
 }
+
+.dark .leaflet-popup-tip {
+  background: #111827 !important;
+}
+
+/* Ensure Leaflet container fills 100% and displays cleanly */
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #0B0F19 !important;
+  font-family: inherit !important;
+}
+
+.leaflet-tile {
+  image-rendering: auto;
+}
+
+/* ============================================================
+   Floating Owl Guide Character Animations
+   ============================================================ */
+@keyframes owlFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-7px) rotate(1.2deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(-1.2deg);
+  }
+}
+
+@keyframes owlWingFlapLeft {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-24deg);
+  }
+}
+
+@keyframes owlWingFlapRight {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(24deg);
+  }
+}
+
+@keyframes owlZzzFloat {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(10px, -18px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(22px, -36px) scale(1.3);
+  }
+}
+
+@keyframes owlWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+@keyframes owlSpotlightPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 16px rgba(79, 70, 229, 0);
+  }
+}
+
+.animate-owl-float {
+  animation: owlFloat 3.6s ease-in-out infinite;
+}
+
+.animate-owl-wing-left {
+  transform-origin: 30% 50%;
+  animation: owlWingFlapLeft 0.5s ease-in-out infinite;
+}
+
+.animate-owl-wing-right {
+  transform-origin: 70% 50%;
+  animation: owlWingFlapRight 0.5s ease-in-out infinite;
+}
+
+.animate-owl-zzz {
+  animation: owlZzzFloat 2.4s ease-out infinite;
+}
+
+.animate-owl-wiggle {
+  animation: owlWiggle 0.6s ease-in-out;
+}
+
+.animate-spotlight-pulse {
+  animation: owlSpotlightPulse 1.8s infinite;
+}
+
+@keyframes owlPeekBounceRight {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-12px);
+  }
+}
+
+@keyframes owlPeekBounceLeft {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(12px);
+  }
+}
+
+@keyframes owlPeekBounceBottom {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes owlDizzySpin {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(18deg) scale(1.05); }
+  50% { transform: rotate(-18deg) scale(0.95); }
+  75% { transform: rotate(10deg) scale(1.02); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+@keyframes owlTongueTease {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.25) rotate(10deg); }
+}
+
+.animate-owl-peek-right {
+  animation: owlPeekBounceRight 2.2s ease-in-out infinite;
+}
+
+.animate-owl-peek-left {
+  animation: owlPeekBounceLeft 2.2s ease-in-out infinite;
+}
+
+.animate-owl-peek-bottom {
+  animation: owlPeekBounceBottom 2.2s ease-in-out infinite;
+}
+
+.animate-owl-dizzy {
+  animation: owlDizzySpin 0.5s ease-in-out infinite;
+}
+
+.animate-owl-tease {
+  animation: owlTongueTease 0.6s ease-in-out infinite;
+}
+
+@keyframes owlSoftBob {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(1.5deg);
+  }
+}
+
+@keyframes owlOneEyeBlink {
+  0%, 90%, 100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes owlCuriousNod {
+  0%, 100% {
+    transform: rotate(0deg) translateX(0);
+  }
+  50% {
+    transform: rotate(-6deg) translateX(-4px);
+  }
+}
+
+.animate-owl-soft-bob {
+  animation: owlSoftBob 3.2s ease-in-out infinite;
+}
+
+.animate-owl-one-eye {
+  animation: owlOneEyeBlink 3.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.animate-owl-curious-nod {
+  animation: owlCuriousNod 2.4s ease-in-out infinite;
+}
+
+
+
+
