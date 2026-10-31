@@ -31,8 +31,12 @@ for section in doc.sections:
     section.left_margin = Inches(1.0)
     section.right_margin = Inches(1.0)
 
-PSIT_LOGO_PATH = os.path.abspath("psit_logo.jpg")
-CSJMU_LOGO_PATH = os.path.abspath("CSJMU_logo.jpg")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOCS_DIR = os.path.join(ROOT_DIR, "docs")
+ASSETS_DIR = os.path.join(DOCS_DIR, "assets")
+
+PSIT_LOGO_PATH = os.path.join(ASSETS_DIR, "psit_logo.jpg")
+CSJMU_LOGO_PATH = os.path.join(ASSETS_DIR, "CSJMU_logo.jpg")
 
 def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
     tcPr = cell._tc.get_or_add_tcPr()
@@ -538,11 +542,11 @@ for sec in ech4.CH4_SECTIONS:
 
 add_h2("4.3 System Screen Snapshots & Operational Walkthrough")
 screenshots_data = [
-    ("images/screenshot_grid.png", "Figure 4.1: AlgoLenz Interactive 2D Grid Pathfinding Canvas demonstrating shortest path exploration with live node inspection and telemetry panel.", "The Interactive Grid Pathfinding Canvas provides an interactive visual laboratory for understanding graph search algorithms. Users can dynamically draw impassable wall barriers, place high-friction mud terrain, and relocate start and destination anchors in real time. The canvas leverages high-performance HTML5 Canvas rendering to guarantee a steady 60 FPS animation loop while animating frontier exploration."),
-    ("images/screenshot_comparison.png", "Figure 4.2: Dual-Algorithm Comparative Benchmarking Arena executing Dijkstra vs A* concurrently on identical terrain.", "The Comparison Arena provides side-by-side empirical verification of theoretical time and space complexity. Two independent algorithms run in synchronized lockstep across identical grid topologies, exposing the immense efficiency gains of heuristic guidance (A*) over blind uniform-cost exploration (Dijkstra). Live telemetry cards record nodes visited, execution duration, and optimal path length."),
-    ("images/screenshot_multistop.png", "Figure 4.3: Traveling Salesperson Problem (TSP) Multi-Stop Dispatch solving logistics delivery tours with 2-Opt local search untangling.", "The Multi-Stop Delivery Dispatch module visualizes solutions to the NP-Hard Traveling Salesperson Problem (TSP). Users place multiple customer delivery markers across an interactive plane. The system executes both Nearest Neighbor heuristics and exact Held-Karp Bitmask Dynamic Programming, applying 2-Opt edge swaps to visually untangle crossing routes and eliminate geometric inefficiencies."),
-    ("images/screenshot_citymap.png", "Figure 4.4: Real-World Geospatial City Map Routing using Leaflet.js and OpenStreetMap cartography across Indian metropolitan road networks.", "The Geospatial City Map module bridges theoretical textbook graph models with real-world road networks. Powered by Leaflet.js and OpenStreetMap vector tiles, users select major metropolitan centers (e.g., New Delhi, Mumbai, Kanpur) and compute real-world shortest paths across urban intersections, demonstrating practical GPS route planning principles."),
-    ("images/screenshot_sorting.png", "Figure 4.5: Audio-Visual Sorting Studio featuring HTML5 Web Audio pitch synthesis and synchronized algorithm telemetry.", "The Sorting Studio transforms numerical array ordering into a multi-sensory audio-visual experience. As algorithms (Quick Sort, Merge Sort, Heap Sort) execute array comparisons and element swaps, the platform synthesizes real-time acoustic sine tones mapped directly to numerical bar heights (120 Hz to 1200 Hz), producing distinctive auditory signatures for each sorting paradigm.")
+    (os.path.join(ROOT_DIR, "images", "screenshot_grid.png"), "Figure 4.1: AlgoLenz Interactive 2D Grid Pathfinding Canvas demonstrating shortest path exploration with live node inspection and telemetry panel.", "The Interactive Grid Pathfinding Canvas provides an interactive visual laboratory for understanding graph search algorithms. Users can dynamically draw impassable wall barriers, place high-friction mud terrain, and relocate start and destination anchors in real time. The canvas leverages high-performance HTML5 Canvas rendering to guarantee a steady 60 FPS animation loop while animating frontier exploration."),
+    (os.path.join(ROOT_DIR, "images", "screenshot_comparison.png"), "Figure 4.2: Dual-Algorithm Comparative Benchmarking Arena executing Dijkstra vs A* concurrently on identical terrain.", "The Comparison Arena provides side-by-side empirical verification of theoretical time and space complexity. Two independent algorithms run in synchronized lockstep across identical grid topologies, exposing the immense efficiency gains of heuristic guidance (A*) over blind uniform-cost exploration (Dijkstra). Live telemetry cards record nodes visited, execution duration, and optimal path length."),
+    (os.path.join(ROOT_DIR, "images", "screenshot_multistop.png"), "Figure 4.3: Traveling Salesperson Problem (TSP) Multi-Stop Dispatch solving logistics delivery tours with 2-Opt local search untangling.", "The Multi-Stop Delivery Dispatch module visualizes solutions to the NP-Hard Traveling Salesperson Problem (TSP). Users place multiple customer delivery markers across an interactive plane. The system executes both Nearest Neighbor heuristics and exact Held-Karp Bitmask Dynamic Programming, applying 2-Opt edge swaps to visually untangle crossing routes and eliminate geometric inefficiencies."),
+    (os.path.join(ROOT_DIR, "images", "screenshot_citymap.png"), "Figure 4.4: Real-World Geospatial City Map Routing using Leaflet.js and OpenStreetMap cartography across Indian metropolitan road networks.", "The Geospatial City Map module bridges theoretical textbook graph models with real-world road networks. Powered by Leaflet.js and OpenStreetMap vector tiles, users select major metropolitan centers (e.g., New Delhi, Mumbai, Kanpur) and compute real-world shortest paths across urban intersections, demonstrating practical GPS route planning principles."),
+    (os.path.join(ROOT_DIR, "images", "screenshot_sorting.png"), "Figure 4.5: Audio-Visual Sorting Studio featuring HTML5 Web Audio pitch synthesis and synchronized algorithm telemetry.", "The Sorting Studio transforms numerical array ordering into a multi-sensory audio-visual experience. As algorithms (Quick Sort, Merge Sort, Heap Sort) execute array comparisons and element swaps, the platform synthesizes real-time acoustic sine tones mapped directly to numerical bar heights (120 Hz to 1200 Hz), producing distinctive auditory signatures for each sorting paradigm.")
 ]
 
 for img_rel_path, caption_txt, desc_txt in screenshots_data:
@@ -703,5 +707,6 @@ for r_i, (ref_id, ref_text) in enumerate(ech5_6.REFERENCES_EXPANDED):
     set_cell_margins(c0, 35, 35, 50, 50)
     set_cell_margins(c1, 35, 35, 50, 50)
 
-doc.save("project_report.docx")
-print("SUCCESS: Saved comprehensive 50+ page project_report.docx!")
+output_file = os.path.join(DOCS_DIR, "project_report.docx")
+doc.save(output_file)
+print(f"SUCCESS: Saved comprehensive 50+ page report to {output_file}!")

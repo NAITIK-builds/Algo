@@ -28,8 +28,12 @@ for section in doc.sections:
     section.left_margin = Inches(1.0)
     section.right_margin = Inches(1.0)
 
-PSIT_LOGO_PATH = os.path.abspath("psit_logo.jpg")
-CSJMU_LOGO_PATH = os.path.abspath("CSJMU_logo.jpg")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOCS_DIR = os.path.join(ROOT_DIR, "docs")
+ASSETS_DIR = os.path.join(DOCS_DIR, "assets")
+
+PSIT_LOGO_PATH = os.path.join(ASSETS_DIR, "psit_logo.jpg")
+CSJMU_LOGO_PATH = os.path.join(ASSETS_DIR, "CSJMU_logo.jpg")
 
 def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
     tcPr = cell._tc.get_or_add_tcPr()
@@ -648,5 +652,5 @@ for r_i, (ref_id, ref_text) in enumerate(ch5_6.REFERENCES_LIST):
     set_cell_margins(c0, 40, 40, 60, 60)
     set_cell_margins(c1, 40, 40, 60, 60)
 
-doc.save("project_report.docx")
-print("Saved project_report.docx successfully!")
+doc.save(os.path.join(DOCS_DIR, "project_report.docx"))
+print("Saved project_report.docx successfully in docs/!")

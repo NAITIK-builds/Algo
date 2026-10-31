@@ -1,10 +1,13 @@
 import os
 from playwright.sync_api import sync_playwright
 
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+report_html_path = 'file:///' + os.path.join(ROOT_DIR, 'docs', 'project_report.html').replace('\\', '/')
+
 with sync_playwright() as p:
     browser = p.chromium.launch()
     page = browser.new_page(viewport={'width': 1200, 'height': 1600})
-    page.goto('file:///C:/Users/naiti/Desktop/ALGO/project_report.html')
+    page.goto(report_html_path)
     
     pages = page.query_selector_all('.academic-page')
     print(f"Total pages in DOM: {len(pages)}")

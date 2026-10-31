@@ -1,6 +1,11 @@
+import os
 import re
 
-with open("PROJECT_DIARY_BCA5005.md", "r", encoding="utf-8") as f:
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOCS_DIR = os.path.join(ROOT_DIR, "docs")
+TARGET_MD = os.path.join(DOCS_DIR, "PROJECT_DIARY_BCA5005.md")
+
+with open(TARGET_MD, "r", encoding="utf-8") as f:
     content = f.read()
 
 # Split up to WEEK 1
@@ -79,7 +84,7 @@ Dr. Amit Yadav (Professor)
 
 new_content = front_matter + weeks_markdown + eval_sheet
 
-with open("PROJECT_DIARY_BCA5005.md", "w", encoding="utf-8") as f:
+with open(TARGET_MD, "w", encoding="utf-8") as f:
     f.write(new_content)
 
-print("Updated PROJECT_DIARY_BCA5005.md successfully!")
+print(f"Updated {TARGET_MD} successfully!")

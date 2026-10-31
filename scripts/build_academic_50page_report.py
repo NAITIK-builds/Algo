@@ -3,6 +3,9 @@ import sys
 
 # Ensure scripts directory in path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOCS_DIR = os.path.join(ROOT_DIR, "docs")
+ASSETS_DIR = os.path.join(DOCS_DIR, "assets")
 
 import report_expanded_ch1 as ech1
 import report_expanded_ch2 as ech2
@@ -49,7 +52,7 @@ def format_academic_page(page_num, title, subtitle, paragraphs, extra_tables_or_
 p1 = """
 <div class="academic-page cover-page" id="page-1">
   <div class="cover-wrapper">
-    <img src="CSJMU_logo.jpg" alt="CSJMU Logo" class="cover-logo" onerror="this.style.display='none'">
+    <img src="assets/CSJMU_logo.jpg" alt="CSJMU Logo" class="cover-logo" onerror="this.style.display='none'">
     <div class="cover-univ">Chhatrapati Shahu Ji Maharaj University, Kanpur</div>
     <div class="cover-report-label">PROJECT REPORT</div>
     <div class="cover-on">on</div>
@@ -70,7 +73,7 @@ p1 = """
     <div class="cover-guide-name">Dr. Amit Yadav</div>
     <div class="cover-guide-desig">Professor, Department of Computer Applications</div>
 
-    <img src="psit_logo.jpg" alt="PSIT Logo" class="cover-logo" onerror="this.style.display='none'">
+    <img src="assets/psit_logo.jpg" alt="PSIT Logo" class="cover-logo" onerror="this.style.display='none'">
     <div class="cover-college-name">PSIT College of Higher Education</div>
     <div class="cover-address">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
     <div class="cover-session">Academic Session: 2026–2027</div>
@@ -862,7 +865,7 @@ pages.append(format_academic_page(29, "", "4.2.3 Bellman-Ford, TSP Heuristics & 
 # SCREENSHOT PAGES 30 to 34 (WITH REAL IMAGES FROM images/)
 # ==========================================
 real_screenshot_data = [
-    (30, "Figure 4.1: Interactive 2D Grid Visualizer", "images/screenshot_grid.png",
+    (30, "Figure 4.1: Interactive 2D Grid Visualizer", "../images/screenshot_grid.png",
      "Figure 4.1: AlgoLenz Interactive 2D Grid Visualizer executing Dijkstra's algorithm across weighted terrain with real-time telemetry.",
      "The primary canvas interface comprises a high-density 25-row by 50-column interactive grid, providing 1,250 addressable graph nodes. The top control bar houses algorithm selectors, terrain generation presets (Recursive Division, Mud Marshes), playback controls, and execution speed sliders. A synchronized telemetry banner displays live metrics including explored node counts, current path distance, total cumulative cost, and execution duration in milliseconds.",
      "The snapshot illustrates Dijkstra's algorithm during mid-execution. The circular radial expansion pattern characteristic of uniform-cost search is visible as a glowing cyan frontier advancing outward from the green start anchor toward the red target. Cells painted with high-friction mud terrain (cost = 5) force the algorithm to compute optimal detours through standard weight paths (cost = 1), visually demonstrating cost-weighted edge relaxation.",
@@ -870,7 +873,7 @@ real_screenshot_data = [
      "Empirical observations confirm zero frame stutter during interactive canvas painting and continuous 60 FPS animation dispatching throughout extensive labyrinth maze traversals.",
      "The grid canvas maintains strict O(1) cell lookup via direct flat 2D row-major indexing. During intensive barrier painting across all 1,250 cells, heap memory delta remains strictly below 150 KB, and frame time variance holds at 0.35ms. Automated property assertions confirm that zero unvisited cells undergo state transitions outside explicit priority queue relaxation cycles."
     ),
-    (31, "Figure 4.2: Dual Comparison Benchmarking Arena", "images/screenshot_comparison.png",
+    (31, "Figure 4.2: Dual Comparison Benchmarking Arena", "../images/screenshot_comparison.png",
      "Figure 4.2: Dual Comparison Benchmarking Arena executing Dijkstra (Left) and A* (Right) simultaneously on identical maze configurations.",
      "The Comparison Arena renders two independent canvas instances side-by-side within a synchronized split-screen viewport. Both viewports share identical start/target coordinates and identical obstacle topologies, providing an authentic scientific benchmarking environment. Dedicated telemetry cards beneath each canvas report nodes visited, path length, and execution time concurrently.",
      "The visual contrast between the two engines is immediate and striking: while Dijkstra (left) expands radially and visits 842 nodes, A* with Manhattan distance heuristics (right) directs its search cone straight toward the goal, visiting only 218 nodes to find the identical 54-hop optimal path. Both engines advance in synchronized step-by-step lockstep, eliminating timing ambiguities.",
@@ -878,7 +881,7 @@ real_screenshot_data = [
      "Quantitative metrics logged in the central benchmarking banner substantiate the theoretical Big-O superiority of directed A* heuristics over exhaustive uniform-cost graph traversals.",
      "Benchmarking telemetry confirms synchronized VSync dispatching across both parallel render contexts without frame drops. In repetitive trials across 50 diverse labyrinth seeds, A* consistently achieves between 68% and 76% search space pruning relative to Dijkstra, confirming theoretical heuristic bounding with 100% path cost optimality."
     ),
-    (32, "Figure 4.3: Multi-Stop TSP Delivery Dispatcher", "images/screenshot_multistop.png",
+    (32, "Figure 4.3: Multi-Stop TSP Delivery Dispatcher", "../images/screenshot_multistop.png",
      "Figure 4.3: Multi-Stop TSP Delivery Dispatcher illustrating 2-Opt local search untangling crossing trajectory edges across waypoint hubs.",
      "The TSP Delivery Dispatcher models urban logistics and multi-stop package routing. The user interface features an interactive coordinate plane where users place delivery drop-off waypoints. A solver panel provides selection between Nearest Neighbor greedy heuristics, Held-Karp dynamic programming, and iterative 2-Opt local search untangling.",
      "The snapshot captures the 2-Opt algorithm actively untangling crossing tour edges. The initial greedy route contains multiple intersecting paths that violate Euclidean triangle inequalities. As the 2-Opt optimization loop executes, crossing edge pairs are systematically inverted, smoothing the trajectory into an efficient planar tour.",
@@ -886,7 +889,7 @@ real_screenshot_data = [
      "The tour length indicator dynamically decrements as edge swaps occur, providing immediate numerical confirmation of route optimization efficiency.",
      "The 2-Opt local search converges within O(n^2) edge evaluation steps, terminating when no pairwise swap yields a negative Delta-length. Telemetry logging verifies that total tour distance is monotonically non-increasing throughout the optimization sequence, eliminating crossing edges while preserving cyclic tour invariants."
     ),
-    (33, "Figure 4.4: Real-World Geospatial City Map Routing", "images/screenshot_citymap.png",
+    (33, "Figure 4.4: Real-World Geospatial City Map Routing", "../images/screenshot_citymap.png",
      "Figure 4.4: Geospatial City Map Routing Engine projecting shortest path computations onto authentic street networks in Kanpur via Leaflet.js.",
      "The Geospatial Map subsystem integrates the Leaflet.js cartographic library and OpenStreetMap vector tile servers to render authentic urban street topologies. A city selector menu provides instant navigation between major Indian metropolitan centers, including Kanpur, New Delhi, Mumbai, and Bengaluru. Landmark waypoints can be clicked directly on the street map.",
      "The snapshot depicts shortest path computation across Kanpur's urban road network, connecting landmarks through arterial roadways and local streets. Unlike abstract grid coordinates, vertices correspond to genuine geographic intersections with latitude and longitude coordinates, and edge weights reflect geodesic Haversine distance calculations.",
@@ -894,7 +897,7 @@ real_screenshot_data = [
      "Real-time route elevation and distance readouts confirm geodesic accuracy, demonstrating the practical relevance of graph algorithms in modern smart-city transportation systems.",
      "Geodesic distances calculated via the Haversine equation account for Earth's ellipsoidal curvature with sub-meter precision. Graph edge queries against the vectorized street network execute in O(log V) time utilizing spatial R-tree indexing, ensuring interactive routing recalculation within 8ms when moving waypoints."
     ),
-    (34, "Figure 4.5: Audio-Visual Sorting Studio", "images/screenshot_sorting.png",
+    (34, "Figure 4.5: Audio-Visual Sorting Studio", "../images/screenshot_sorting.png",
      "Figure 4.5: Audio-Visual Sorting Studio with real-time frequency synthesis mapping array element values to acoustic sine wave pitches.",
      "The Sorting Studio visualizes six fundamental sorting algorithms (Quick, Merge, Heap, Insertion, Selection, Bubble Sort) using an interactive vertical bar canvas. Control sliders allow students to adjust array sizes (10 to 120 elements) and playback speeds. A live audio toggle activates the Web Audio API synthesis engine.",
      "The snapshot shows QuickSort executing Lomuto's partitioning scheme. The pivot element is highlighted in bright amber, scanned elements in cyan, and sorted partition boundaries in emerald green. Each array comparison synthesizes a precise sine wave tone proportional to element values, creating an auditory signature for each algorithm.",
@@ -1839,7 +1842,8 @@ html_template = f"""<!DOCTYPE html>
 </html>
 """
 
-with open("project_report.html", "w", encoding="utf-8") as f:
+output_path = os.path.join(DOCS_DIR, "project_report.html")
+with open(output_path, "w", encoding="utf-8") as f:
     f.write(html_template)
 
-print("SUCCESS: Perfectly Balanced Academic 50-Page project_report.html generated successfully!")
+print(f"SUCCESS: Perfectly Balanced Academic 50-Page report generated at {output_path} successfully!")

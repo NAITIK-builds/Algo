@@ -17,7 +17,11 @@ for section in doc.sections:
     section.left_margin = Inches(0.65)
     section.right_margin = Inches(0.65)
 
-LOGO_PATH = os.path.abspath("psit_logo.jpg")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOCS_DIR = os.path.join(ROOT_DIR, "docs")
+ASSETS_DIR = os.path.join(DOCS_DIR, "assets")
+
+LOGO_PATH = os.path.join(ASSETS_DIR, "psit_logo.jpg")
 
 def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
     tcPr = cell._tc.get_or_add_tcPr()
@@ -697,5 +701,6 @@ r_sch.font.bold = True
 
 add_college_footer(doc)
 
-doc.save("project_diary.docx")
-print("Saved project_diary.docx successfully!")
+output_file = os.path.join(DOCS_DIR, "project_diary.docx")
+doc.save(output_file)
+print(f"Saved project diary successfully to {output_file}!")

@@ -1,8 +1,9 @@
 import os
 import sys
 
-# Ensure directories exist
-os.makedirs("scripts", exist_ok=True)
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOCS_DIR = os.path.join(ROOT_DIR, "docs")
+ASSETS_DIR = os.path.join(DOCS_DIR, "assets")
 
 html_content = """<!DOCTYPE html>
 <html lang="en">
@@ -250,7 +251,7 @@ html_content = """<!DOCTYPE html>
         <div class="inst-name">PSIT-College of Higher Education</div>
         <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
       </div>
-      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+      <img src="assets/psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
     </div>
 
     <div class="page-body" style="text-align: center; justify-content: space-around;">
@@ -288,7 +289,7 @@ html_content = """<!DOCTYPE html>
       </div>
 
       <div style="margin: 10px 0;">
-        <img src="psit_logo.jpg" style="height: 75px; width: auto;" alt="PSIT Logo">
+        <img src="assets/psit_logo.jpg" style="height: 75px; width: auto;" alt="PSIT Logo">
       </div>
     </div>
 
@@ -307,7 +308,7 @@ html_content = """<!DOCTYPE html>
         <div class="inst-name">PSIT-College of Higher Education</div>
         <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
       </div>
-      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+      <img src="assets/psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
     </div>
 
     <div class="page-body">
@@ -359,7 +360,7 @@ html_content = """<!DOCTYPE html>
         <div class="inst-name">PSIT-College of Higher Education</div>
         <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
       </div>
-      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+      <img src="assets/psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
     </div>
 
     <div class="page-body">
@@ -425,7 +426,7 @@ html_content = """<!DOCTYPE html>
         <div class="inst-name">PSIT-College of Higher Education</div>
         <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
       </div>
-      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+      <img src="assets/psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
     </div>
 
     <div class="page-body">
@@ -515,7 +516,7 @@ html_content = """<!DOCTYPE html>
         <div class="inst-name">PSIT-College of Higher Education</div>
         <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
       </div>
-      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+      <img src="assets/psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
     </div>
 
     <div class="page-body" style="padding: 10px;">
@@ -548,7 +549,7 @@ html_content = """<!DOCTYPE html>
         </div>
 
         <div>
-          <img src="psit_logo.jpg" style="height: 65px; width: auto; margin-bottom: 10px;" alt="PSIT Logo">
+          <img src="assets/psit_logo.jpg" style="height: 65px; width: auto; margin-bottom: 10px;" alt="PSIT Logo">
           <div style="font-size: 13pt; font-weight: bold;">PSIT College Of Higher Education, Kanpur</div>
           <div style="font-size: 12pt; font-weight: bold;">C.S.J.M. University</div>
           <div style="font-size: 12pt; font-weight: bold;">Kanpur</div>
@@ -571,7 +572,7 @@ html_content = """<!DOCTYPE html>
         <div class="inst-name">PSIT-College of Higher Education</div>
         <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
       </div>
-      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+      <img src="assets/psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
     </div>
 
     <div class="page-body">
@@ -611,7 +612,7 @@ html_content = """<!DOCTYPE html>
         <div class="inst-name">PSIT-College of Higher Education</div>
         <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
       </div>
-      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+      <img src="assets/psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
     </div>
 
     <div class="page-body">
@@ -654,7 +655,7 @@ html_content = """<!DOCTYPE html>
         <div class="inst-name">PSIT-College of Higher Education</div>
         <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
       </div>
-      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+      <img src="assets/psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
     </div>
 
     <div class="page-body">
@@ -688,7 +689,7 @@ html_content = """<!DOCTYPE html>
         <div class="inst-name">PSIT-College of Higher Education</div>
         <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
       </div>
-      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+      <img src="assets/psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
     </div>
 
     <div class="page-body" style="text-align: center; justify-content: center;">
@@ -716,7 +717,7 @@ html_content = """<!DOCTYPE html>
         <div class="inst-name">PSIT-College of Higher Education</div>
         <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
       </div>
-      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+      <img src="assets/psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
     </div>
 
     <div class="page-body">
@@ -800,7 +801,7 @@ for w in weeks_data:
         <div class="inst-name">PSIT-College of Higher Education</div>
         <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
       </div>
-      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+      <img src="assets/psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
     </div>
 
     <div class="page-body">
@@ -901,7 +902,7 @@ html_content += """
         <div class="inst-name">PSIT-College of Higher Education</div>
         <div class="inst-addr">Kanpur-Delhi National Highway (NH-19), Bhauti, Kanpur-209305 (U.P.), India</div>
       </div>
-      <img src="psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
+      <img src="assets/psit_logo.jpg" class="inst-logo" alt="PSIT Logo">
     </div>
 
     <div class="page-body">
@@ -982,7 +983,8 @@ html_content += """
 </html>
 """
 
-with open("project_diary.html", "w", encoding="utf-8") as f:
+output_path = os.path.join(DOCS_DIR, "project_diary.html")
+with open(output_path, "w", encoding="utf-8") as f:
     f.write(html_content)
 
-print("Saved project_diary.html successfully!")
+print(f"Saved project diary HTML successfully to {output_path}!")

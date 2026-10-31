@@ -2,7 +2,8 @@ import os
 import time
 from playwright.sync_api import sync_playwright
 
-output_dir = os.path.abspath("images")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+output_dir = os.path.join(ROOT_DIR, "images")
 os.makedirs(output_dir, exist_ok=True)
 
 with sync_playwright() as p:
